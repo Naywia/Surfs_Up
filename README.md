@@ -17,7 +17,7 @@ No specific configuration is required for this project at the moment.
 Language: HTML, CSS, JavaScript  
 
 ## Developers
-Alexander Wiencken
-Maya Wettendorff
-Mads Juul Carlsen
-Michelle Won Prachan Alsing
+Alexander Wiencken  
+Maya Wettendorff  
+Mads Juul Carlsen  
+Michelle Won Prachan Alsing  
