@@ -18,6 +18,6 @@ Language: HTML, CSS, JavaScript
 
 ## Developers
 Alexander Wiencken  
-Maya Wettendorff  
 Mads Juul Carlsen  
+Maya Wettendorff  
 Michelle Won Prachan Alsing  
