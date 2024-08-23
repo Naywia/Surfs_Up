@@ -18,6 +18,7 @@ Language: HTML, CSS, JavaScript
 
 ## Developers
 Alexander Wiencken  
+Jousef Khanjer  
 Mads Juul Carlsen  
 Maya Wettendorff  
 Michelle Won Prachan Alsing  
