@@ -1,0 +1,47 @@
+html, body {
+    --dark: #1f1f1f;
+    --light: #f2eeea;
+    --brown-accent: #393333;
+    --orange-accent: #e59355;
+    --blue-accent: #729ea1;
+    --yellow-accent: #ffde8a;
+
+    display: flex;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--light);
+}
+
+nav {
+    display: flex;
+    height: 5rem;
+    background-color: var(--brown-accent);
+    flex-grow: 1;
+    color: var(--light);
+    justify-content: end;
+    align-items: center;
+}
+
+nav a {
+    display: flex;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+nav a:hover {
+    cursor: pointer;
+}
+
+#sidebar {
+    width: 17rem;
+    height: 100vh;
+    background-color: var(--blue-accent);
+    color: var(--dark);
+}
+
+#book-btn {
+    background-color: var(--orange-accent);
+}
