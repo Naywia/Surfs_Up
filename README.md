@@ -9,7 +9,7 @@ Surf's Up is a school project designed as a website to help users plan their per
 
 ## Installation
 This project is not meant for installation as it is still a school project under development.  
-Also... one does not "install" website.  
+Also... one does not "install" a website.  
 
 ### Configuration
 No specific configuration is required for this project at the moment.  
