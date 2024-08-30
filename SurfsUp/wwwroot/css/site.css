@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   --dark: #1f1f1f;
   --light: #f2eeea;
   --brown-accent: #393333;
@@ -41,25 +42,37 @@ nav a:hover {
 }
 
 #sidebar {
+  display: flex;
   width: 17rem;
   height: 100vh;
   position: fixed;
+  flex-direction: column;
   background-color: var(--blue-accent);
   color: var(--dark);
-  padding-left: 1%;
+}
+
+
+#logo img {
+  width: 100%;
+}
+
+#location {
+  margin: 1.5em;
+}
+
+#shop-info {
+  margin: 1.5em;
+  margin-top: auto;
 }
 
 .fa {
   font-size: 2em !important;
 }
 
-.social-icons {
-  display: flex;
-  justify-content: center;
-}
 .social-icons a {
-  margin: 1em;
+  margin: 0.5em;
 }
+
 .social-icons a:first-child {
   margin-left: 0;
 }
@@ -76,4 +89,7 @@ nav a:hover {
   margin: 5rem;
 }
 
-
+h1 {
+  font-weight: bold;
+  color: var(--orange-accent);
+}
