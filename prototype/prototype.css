@@ -38,10 +38,15 @@ nav a:hover {
 #sidebar {
     width: 17rem;
     height: 100vh;
+    position: fixed;
     background-color: var(--blue-accent);
     color: var(--dark);
 }
 
 #book-btn {
     background-color: var(--orange-accent);
+}
+
+#page {
+    margin: 5rem;
 }
