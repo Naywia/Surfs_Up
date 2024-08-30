@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SurfsUp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SurfsUp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+    <div id="sidebar">
+        <div class="logo">
+            <a href="../HTML/Surfsup.html">
+                <img src="../Img/Logo.png" alt="Surf's Up Logo">
+            </a>
+        </div>
+        <div class="location">
+            <h2>Odense</h2>
+            <p>Mandag<br>20°C</p>
+            <p>Tirsdag<br>22°C</p>
+            <p>Onsdag<br>15°C</p>
+            <p>Torsdag<br>18°C</p>
+            <p>Fredag<br>23°C</p>
+        </div>
+        <div class="hours">
+            <h3>Åbningstider:</h3>
+            <p>Mandag - Torsdag: 08:00 - 16:00<br>Fredag - Lørdag: 08:00-19:00<br>Søndag: Lukket</p>
+        </div>
+        <div class="contact">
+            <h3>Kontakt:</h3>
+            <p>Email: kontakt@surfsup.dk<br>Phone: +45 69459835</p>
+            <div class="social-icons">
+                <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+                <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                    <i class="fa fa-twitter-square"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <nav>
+            <a href="#practical-info">Praktisk Info</a>
+            <a href="#equipment">Udstyr</a>
+            <a href="#instructors">Instruktører</a>
+            <a id="book-btn" href="#book">Book</a>
+        </nav>
+        <main id="page" role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
