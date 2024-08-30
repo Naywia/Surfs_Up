@@ -15,7 +15,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        WeatherData wd = new(true);
+        return View(wd);
     }
 
     public IActionResult Privacy()
