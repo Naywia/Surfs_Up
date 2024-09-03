@@ -1,6 +1,6 @@
-﻿@model WeatherData
-@{
-    DayData[] data = Model.GetDayData(DAYS.Weekdays);
+﻿@{
+    var wd = (WeatherData)ViewData["WD"];
+    DayData[] data = wd.GetDayData(DAYS.Weekdays);
 }
 
 <!DOCTYPE html>

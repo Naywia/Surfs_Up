@@ -34,7 +34,7 @@ public class WeatherData
     /// An object containing temps and alike for each day of the week.
     /// </summary>
     /// <param name="init_data">Wether or populate the weather data object with... well, data</param>
-    public WeatherData(bool init_data) {
+    public WeatherData(bool init_data = true) {
         if  (init_data) { UpdateData(); }
     }
 
