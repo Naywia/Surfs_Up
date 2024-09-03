@@ -14,9 +14,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//WeatherData wd = new(true);
-//var test = wd.GetTemps(DAYS.Monday | DAYS.Weekend);
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
