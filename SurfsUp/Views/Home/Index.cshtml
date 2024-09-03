@@ -2,43 +2,86 @@
     ViewData["Title"] = "Hafla og burger emporium";
 }
 
-<div class="text-center">
-    <h1 id="practical-info" class="display-4">Praktisk info</h1>
-    <p><a href="https://haflaburger.dk/" target="_blank">HAFLA BURGER</a></p>
-    <h1 id="equipment" class="display-4">Udstyr</h1>
-    <p>Bacon ipsum dolor amet beef frankfurter picanha rump shankle. Meatloaf salami frankfurter, ham brisket corned
-        beef short loin ham hock. Meatloaf shank tenderloin drumstick venison shoulder chicken rump pork loin
-        frankfurter spare ribs buffalo chislic. Capicola leberkas ground round cow short ribs pork chop strip steak. Ham
-        hock pork loin picanha t-bone prosciutto boudin pork belly, chicken sausage drumstick pig. Prosciutto brisket
-        tail, t-bone doner fatback jowl rump bacon frankfurter.</p>
-        
-       <p> Frankfurter pork belly venison short loin tail salami ground round andouille shoulder. Cupim beef short loin
-        venison, sirloin shankle prosciutto. Meatloaf pork chop beef ribs, chicken picanha swine pork belly beef
-        meatball spare ribs bacon alcatra. Shank cow landjaeger pancetta spare ribs pastrami kielbasa frankfurter pork
-        belly alcatra pig jerky tail ham hock brisket. Drumstick pork belly brisket, short loin meatball t-bone ground
-        round sausage venison turducken shankle burgdoggen tri-tip buffalo. Tail jowl andouille fatback meatloaf
-        hamburger frankfurter shoulder cow pancetta.</p>
-    <h1 id="instructors" class="display-4">Instruktører</h1>
-    <p>Bresaola turducken flank chislic pancetta, kevin andouille. Flank bresaola prosciutto short loin shankle tri-tip.
-        Boudin beef sausage porchetta chicken pork loin. Landjaeger chicken venison, short loin pork belly corned beef
-        jerky pork loin ball tip pastrami kielbasa beef ribs rump sausage tri-tip. Tenderloin buffalo pork chop swine,
-        andouille picanha sausage strip steak. Fatback pancetta pork belly swine, brisket salami tongue ham chislic pork
-        strip steak tri-tip buffalo hamburger. T-bone landjaeger chuck corned beef andouille.
-        <p></p>
-        Burgdoggen pancetta boudin, tri-tip turkey corned beef fatback ribeye. T-bone pork landjaeger, picanha chicken
-        ribeye brisket jowl. Chuck short loin frankfurter, hamburger salami pork chislic chicken drumstick cupim. Kevin
-        sausage t-bone, ground round shoulder picanha shankle alcatra beef ribs flank.</p>
-    <h1 id="book" class="display-4">Book</h1>
-    <p>Drumstick prosciutto cow sausage capicola tail doner t-bone pancetta swine pork belly picanha ribeye strip steak.
-        Ribeye beef alcatra turkey, doner tenderloin picanha andouille frankfurter filet mignon pancetta. Filet mignon
-        picanha strip steak pork, t-bone salami ball tip spare ribs pork loin. Pork chop pork loin jowl flank shank,
-        fatback kevin. Beef ribs pastrami ground round t-bone. Hamburger tongue pork belly kevin, ball tip tri-tip
-        chicken shoulder leberkas. Ground round rump pancetta, jowl shoulder fatback beef ribs prosciutto.
-        <p></p>
-        Swine buffalo cupim pancetta, pastrami meatloaf prosciutto salami ham hock turducken andouille ground round
-        shoulder t-bone shank. Ham hock biltong shoulder pork swine, brisket jowl ribeye landjaeger andouille short loin
-        beef. Ham kielbasa swine jowl prosciutto meatball. Venison turducken corned beef fatback, cupim pork belly
-        t-bone. Pork belly short ribs swine, flank beef jerky chuck burgdoggen bresaola fatback sausage shankle bacon
-        biltong.</p>
+@model List<EquipmentModel>
 
+<h1 id="practical-info" class="display-4">Praktisk info</h1>
+<p>Bacon ipsum dolor amet tongue brisket leberkas salami, t-bone doner kielbasa. Ham hock jerky pork loin chislic
+    t-bone tri-tip shankle shoulder jowl bresaola. Rump tenderloin tongue pastrami, sausage drumstick andouille
+    kielbasa ball tip ground round pork chop. Fatback pastrami corned beef meatloaf pig pork belly leberkas ham
+    buffalo porchetta. Spare ribs jowl flank, rump corned beef shank doner meatloaf cow pork loin ham hock
+    landjaeger ball tip salami. Ball tip ham t-bone, pancetta tail shoulder ribeye. Tongue brisket spare ribs pork
+    chop salami chuck alcatra.</p>
+
+<p>Picanha filet mignon beef alcatra buffalo. Rump turkey tenderloin shankle, sirloin bacon flank. Boudin
+    frankfurter corned beef landjaeger shankle pastrami, pig biltong doner buffalo. Filet mignon tri-tip rump
+    bresaola picanha pork chop, bacon cow chicken pig tenderloin fatback. Pastrami ham hock picanha ham spare ribs,
+    landjaeger tongue fatback venison shankle hamburger meatloaf sirloin. Cupim frankfurter shank sirloin buffalo,
+    rump spare ribs picanha brisket pork chop fatback biltong sausage.</p>
+<h1 id="equipment" class="display-4">Udstyr</h1>
+using System.Linq.Expressions;
+using System.Diagnostics;
+<p>Bacon ipsum dolor amet beef frankfurter picanha rump shankle. Meatloaf salami frankfurter, ham brisket corned
+    beef short loin ham hock. Meatloaf shank tenderloin drumstick venison shoulder chicken rump pork loin
+    frankfurter spare ribs buffalo chislic. Capicola leberkas ground round cow short ribs pork chop strip steak. Ham
+    hock pork loin picanha t-bone prosciutto boudin pork belly, chicken sausage drumstick pig. Prosciutto brisket
+    tail, t-bone doner fatback jowl rump bacon frankfurter.</p>
+
+<p> Frankfurter pork belly venison short loin tail salami ground round andouille shoulder. Cupim beef short loin
+    venison, sirloin shankle prosciutto. Meatloaf pork chop beef ribs, chicken picanha swine pork belly beef
+    meatball spare ribs bacon alcatra. Shank cow landjaeger pancetta spare ribs pastrami kielbasa frankfurter pork
+    belly alcatra pig jerky tail ham hock brisket. Drumstick pork belly brisket, short loin meatball t-bone ground
+    round sausage venison turducken shankle burgdoggen tri-tip buffalo. Tail jowl andouille fatback meatloaf
+    hamburger frankfurter shoulder cow pancetta.</p>
+<div class="grid">
+    @foreach (var equipment in Model)
+    {
+        <div class="card-equipment">
+            <div class="image">
+                @if (@equipment.Type == "Shortboard")
+                {
+                    <img src="~/images/boards/shortboard.png" alt="shortboard">
+                }
+                else if (@equipment.Type == "Longboard")
+                {
+                    <img src="~/images/boards/longboard.png" alt="longboard">
+                }
+                else if (@equipment.Type == "Funboard")
+                {
+                    <img src="~/images/boards/funboard.png" alt="funboard">
+                }
+                else if (@equipment.Type == "Fish")
+                {
+                    <img src="~/images/boards/fish.png" alt="fish">
+                }
+                else if (@equipment.Type == "SUP")
+                {
+                    <img src="~/images/boards/sup.png" alt="sup">
+                }
+
+            </div>
+            <div class="content">
+                <h4>@equipment.Name</h4>
+                <div class="description">
+                    <p>Længde(Inches): @equipment.Length</p>
+                    <p>Bredde(Inches): @equipment.Width</p>
+                    <p>Tykkelse(Inches): @equipment.Thickness</p>
+                    <p>Volumen(L): @equipment.Volume</p>
+                    <p>Type: @equipment.Type</p>
+                    <p>Pris: @equipment.Price</p>
+                    <p>Tilbehør: @equipment.Equipment</p>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+
+@* <h1 id="instructors" class="display-4">Instruktører</h1>
+<p>Bresaola turducken flank chislic pancetta, kevin andouille. Flank bresaola prosciutto short loin shankle tri-tip.
+Boudin beef sausage porchetta chicken pork loin. Landjaeger chicken venison, short loin pork belly corned beef
+jerky pork loin ball tip pastrami kielbasa beef ribs rump sausage tri-tip. Tenderloin buffalo pork chop swine,
+andouille picanha sausage strip steak. Fatback pancetta pork belly swine, brisket salami tongue ham chislic pork
+strip steak tri-tip buffalo hamburger. T-bone landjaeger chuck corned beef andouille.
+<p>Burgdoggen pancetta boudin, tri-tip turkey corned beef fatback ribeye. T-bone pork landjaeger, picanha chicken
+ribeye brisket jowl. Chuck short loin frankfurter, hamburger salami pork chislic chicken drumstick cupim. Kevin
+sausage t-bone, ground round shoulder picanha shankle alcatra beef ribs flank.</p> *@

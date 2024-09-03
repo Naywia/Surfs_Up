@@ -18,17 +18,19 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         this.ViewData["WD"] = WD;
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
+        var equipment = EquipmentRepository.GetEquipment();
+        return View(equipment);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    [HttpPost]
+    public IActionResult AddBooking(BookFormModel bookForm) {
+        BookRepository.Add(bookForm);
+        return View(nameof(Index));
     }
 }

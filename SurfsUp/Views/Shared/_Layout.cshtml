@@ -7,23 +7,35 @@
 <html lang="en">
 
 <head>
+    <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SurfsUp</title>
+
+    <!-- Site Title -->
+    <title>Surf's Up</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SurfsUp.styles.css" asp-append-version="true" />
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- Site Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon/favicon-16x16.png">
 </head>
 
 <body>
     <div id="sidebar">
-        <div class="logo">
-            <a href="../HTML/Surfsup.html">
-                <img src="../Img/Logo.png" alt="Surf's Up Logo">
-            </a>
+        <div id="logo">
+            <img src="~/images/logo.png" alt="Surf's Up Logo">
         </div>
-        <div class="location">
+        <div id="location">
             <h2>Odense</h2>
             <div id="day0"><p>Mandag <i>(@data[0].DateString)</i><br>@data[0] °C</p></div>
             <div id="day1"><p>Tirsdag <i>(@data[1].DateString)</i><br>@data[1] °C</p></div>
@@ -31,32 +43,34 @@
             <div id="day3"><p>Torsdag <i>(@data[3].DateString)</i><br>@data[3] °C</p></div>
             <div id="day4"><p>Fredag <i>(@data[4].DateString)</i><br>@data[4] °C</p></div>
         </div>
-        <div class="hours">
-            <h3>Åbningstider:</h3>
-            <p>Mandag - Torsdag: 08:00 - 16:00<br>Fredag - Lørdag: 08:00-19:00<br>Søndag: Lukket</p>
-        </div>
-        <div class="contact">
-            <h3>Kontakt:</h3>
-            <p>Email: kontakt@surfsup.dk<br>Phone: +45 69459835</p>
-            <div class="social-icons">
-                <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
-                    <i class="fa fa-facebook-official"></i>
-                </a>
-                <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
-                    <i class="fa fa-instagram"></i>
-                </a>
-                <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
-                    <i class="fa fa-twitter-square"></i>
-                </a>
+        <div id="shop-info">
+            <div id="hours">
+                <h3>Åbningstider:</h3>
+                <p>Mandag - Torsdag: 08:00 - 16:00<br>Fredag - Lørdag: 08:00-19:00<br>Søndag: Lukket</p>
+            </div>
+            <div id="contact">
+                <h3>Kontakt:</h3>
+                <p>Email: kontakt@surfsup.dk<br>Phone: +45 69459835</p>
+                <div class="social-icons">
+                    <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-facebook-official"></i>
+                    </a>
+                    <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
     <div class="box">
         <nav>
-            <a href="#practical-info">Praktisk Info</a>
-            <a href="#equipment">Udstyr</a>
-            <a href="#instructors">Instruktører</a>
-            <a id="book-btn" href="#book">Book</a>
+            <a onclick="goTo('#practical-info')">Praktisk Info</a>
+            <a onclick="goTo('#equipment')">Udstyr</a>
+            @* <a onclick="goTo('#instructors')">Instruktører</a> *@
+            <a onclick="goTo('#book')" id="book-btn">Book</a>
         </nav>
         <main id="page" role="main" class="pb-3">
             @RenderBody()

@@ -1,10 +1,12 @@
-html, body {
+html,
+body {
   --dark: #1f1f1f;
   --light: #f2eeea;
   --brown-accent: #393333;
   --orange-accent: #e59355;
   --blue-accent: #729ea1;
   --yellow-accent: #ffde8a;
+  --loading-grey: #ededed;
 
   display: flex;
   margin: 0;
@@ -20,12 +22,14 @@ a {
 
 nav {
   display: flex;
+  position: fixed;
   height: 5rem;
   background-color: var(--brown-accent);
-  flex-grow: 1;
   color: var(--light);
   justify-content: end;
   align-items: center;
+  width: -moz-available;          /* For Mozzila */
+  width: -webkit-fill-available;  /* For Chrome */
 }
 
 nav a {
@@ -41,25 +45,37 @@ nav a:hover {
 }
 
 #sidebar {
+  display: flex;
   width: 17rem;
   height: 100vh;
   position: fixed;
+  flex-direction: column;
   background-color: var(--blue-accent);
   color: var(--dark);
-  padding-left: 1%;
+}
+
+
+#logo img {
+  width: 100%;
+}
+
+#location {
+  margin: 1.5em;
+}
+
+#shop-info {
+  margin: 1.5em;
+  margin-top: auto;
 }
 
 .fa {
   font-size: 2em !important;
 }
 
-.social-icons {
-  display: flex;
-  justify-content: center;
-}
 .social-icons a {
-  margin: 1em;
+  margin: 0.5em;
 }
+
 .social-icons a:first-child {
   margin-left: 0;
 }
@@ -76,4 +92,81 @@ nav a:hover {
   margin: 5rem;
 }
 
+h1 {
+  font-weight: bold;
+  color: var(--orange-accent);
+}
 
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-equipment {
+  width: 17em;
+  margin: 2.5em;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
+}
+
+.image {
+  height: 200px;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  height: inherit;
+  object-fit: cover;
+}
+
+.content {
+  padding: 2rem 1.8rem;
+}
+
+h4 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+
+.loading .image,
+.loading h4,
+.loading .description {
+  background-color: var(--loading-grey);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, .5) 50%,
+    rgba(255, 255, 255, 0) 60%
+  ) var(--loading-grey);
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  animation: 1s loading ease-in-out infinite;
+}
+
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
+
+.loading h4 {
+  min-height: 1.6rem;
+  border-radius: 4px;
+  animation-delay: .05s;
+}
+
+.loading .description {
+  min-height: 4rem;
+  border-radius: 4px;
+  animation-delay: .06s;
+}
