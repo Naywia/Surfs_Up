@@ -2,3 +2,12 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+function goTo(id) {
+    let destination = document.querySelector(id);
+    let yCoord = destination.offsetTop - 80;
+    window.scrollTo({
+      top: yCoord,
+      behavior: "smooth"
+    });
+  }

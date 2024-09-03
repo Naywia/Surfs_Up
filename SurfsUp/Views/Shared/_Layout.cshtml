@@ -62,10 +62,10 @@
     </div>
     <div class="box">
         <nav>
-            <a href="#practical-info">Praktisk Info</a>
-            <a href="#equipment">Udstyr</a>
-            <a href="#instructors">Instruktører</a>
-            <a id="book-btn" href="#book">Book</a>
+            <a onclick="goTo('#practical-info')">Praktisk Info</a>
+            <a onclick="goTo('#equipment')">Udstyr</a>
+            @* <a onclick="goTo('#instructors')">Instruktører</a> *@
+            <a onclick="goTo('#book')" id="book-btn">Book</a>
         </nav>
         <main id="page" role="main" class="pb-3">
             @RenderBody()

@@ -1,0 +1,27 @@
+@model BookFormModel
+
+h1 id="book" class="display-4">Book</h1>
+<p>Drumstick prosciutto cow sausage capicola tail doner t-bone pancetta swine pork belly picanha ribeye strip steak.
+    Ribeye beef alcatra turkey, doner tenderloin picanha andouille frankfurter filet mignon pancetta. Filet mignon
+    picanha strip steak pork, t-bone salami ball tip spare ribs pork loin. Pork chop pork loin jowl flank shank,
+    fatback kevin. Beef ribs pastrami ground round t-bone. Hamburger tongue pork belly kevin, ball tip tri-tip
+    chicken shoulder leberkas. Ground round rump pancetta, jowl shoulder fatback beef ribs prosciutto.</p>
+<form method="post" asp-controller="home" asp-action="addbooking">
+    <div>
+        <label asp-for="FirstName"></label>
+        <input type="text" asp-for="FirstName">
+    </div>
+    <div>
+        <label asp-for="LastName"></label>
+        <input type="text" asp-for="LastName">
+    </div>
+    <div>
+        <label asp-for="Time"></label>
+        <input type="datetime-local" asp-for="Time">
+    </div>
+    <div>
+        <label asp-for="Equipment"></label>
+        <input type="text" asp-for="Equipment">
+    </div>
+    <input type="submit" value="Book">
+</form>
