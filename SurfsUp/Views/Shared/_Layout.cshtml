@@ -1,6 +1,6 @@
 ﻿@model WeatherData
 @{
-    float[] temps = Model.GetTemps(DAYS.Weekdays);
+    DayData[] data = Model.GetDayData(DAYS.Weekdays);
 }
 
 <!DOCTYPE html>
@@ -25,11 +25,11 @@
         </div>
         <div class="location">
             <h2>Odense</h2>
-            <p>Mandag<br>@temps[0] °C</p>
-            <p>Tirsdag<br>@temps[1] °C</p>
-            <p>Onsdag<br>@temps[2] °C</p>
-            <p>Torsdag<br>@temps[3] °C</p>
-            <p>Fredag<br>@temps[4] °C</p>
+            <div id="day0"><p>Mandag <i>(@data[0].DateString)</i><br>@data[0] °C</p></div>
+            <div id="day1"><p>Tirsdag <i>(@data[1].DateString)</i><br>@data[1] °C</p></div>
+            <div id="day2"><p>Onsdag <i>(@data[2].DateString)</i><br>@data[2] °C</p></div>
+            <div id="day3"><p>Torsdag <i>(@data[3].DateString)</i><br>@data[3] °C</p></div>
+            <div id="day4"><p>Fredag <i>(@data[4].DateString)</i><br>@data[4] °C</p></div>
         </div>
         <div class="hours">
             <h3>Åbningstider:</h3>
@@ -65,6 +65,20 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        var dates = [];
+        @foreach (var d in data) {
+            @:dates.push(@d.DateUnix * 1000);
+        }
+
+        for (let i = 0; i < dates.length; i++) {
+            var testDate = new Date(dates[i]).getDate();
+            var currDate = new Date().getDate();
+
+            if (testDate === currDate)
+            { document.getElementById(`day${i}`).style.fontWeight = "bold"; }
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
