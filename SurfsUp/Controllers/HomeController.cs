@@ -15,8 +15,17 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var equipment = EquipmentRepository.GetEquipment();
-        return View(equipment);
+        // var equipment = EquipmentRepository.GetEquipment();
+
+        List<EquipmentModel> equipment = EquipmentRepository.GetEquipment();
+        List<SuitModel> suits = SuitRepository.GetSuits();
+        DetailModel model = new()
+        {
+            Equipment = equipment,
+            Suits = suits
+        };
+
+        return View(model);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -26,7 +35,8 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult AddBooking(BookFormModel bookForm) {
+    public IActionResult AddBooking(BookFormModel bookForm)
+    {
         BookRepository.Add(bookForm);
         return View(nameof(Index));
     }

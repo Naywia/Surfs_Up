@@ -6,7 +6,7 @@ body {
   --orange-accent: #e59355;
   --blue-accent: #729ea1;
   --yellow-accent: #ffde8a;
-  --loading-grey: #ededed;
+  --grey: #ededed;
 
   display: flex;
   margin: 0;
@@ -15,10 +15,26 @@ body {
   background-color: var(--light);
 }
 
+/* ------ HTML TAGS ------ */
+
+h1 {
+  font-weight: bold;
+  color: var(--orange-accent);
+  margin-top: 5rem;
+}
+
+h4 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
 a {
   text-decoration: none;
   color: var(--light) !important;
 }
+
+/* ------ NAV ------ */
 
 nav {
   display: flex;
@@ -43,7 +59,14 @@ nav a {
 
 nav a:hover {
   cursor: pointer;
+  font-weight: bold;
 }
+
+#book-btn {
+  background-color: var(--orange-accent);
+}
+
+/* ------ SIDEBAR ------ */
 
 #sidebar {
   display: flex;
@@ -54,7 +77,6 @@ nav a:hover {
   background-color: var(--blue-accent);
   color: var(--dark);
 }
-
 
 #logo img {
   width: 100%;
@@ -81,27 +103,25 @@ nav a:hover {
   margin-left: 0;
 }
 
+/* ------ ACCOUNT FOR THE SIDEBAR ------ */
+
 .box {
   margin-left: 17rem;
 }
 
-#book-btn {
-  background-color: var(--orange-accent);
-}
+/* ------ CONTENT ------ */
 
 #page {
   margin: 10rem;
 }
 
-h1 {
-  font-weight: bold;
-  color: var(--orange-accent);
-  margin-top: 5rem;
-}
+/* ------ PRACTICAL INFO ------ */
 
 .carousel-item img {
   aspect-ratio: 16/9;
 }
+
+/* ------ EQUIPMENT ------ */
 
 .grid {
   display: flex;
@@ -133,11 +153,7 @@ h1 {
   padding: 2rem 1.8rem;
 }
 
-h4 {
-  margin: 0 0 1rem;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-}
+
 
 .description {
   font-size: 1rem;
@@ -161,10 +177,12 @@ h4 {
   background-color: var(--orange-accent);
 }
 
+/* ------ SKELETON (CARD/EQUIPMENT) ------ */
+
 .loading .image,
 .loading h4,
 .loading .description {
-  background-color: var(--loading-grey);
+  background-color: var(--grey);
   background: linear-gradient(
     100deg,
     rgba(255, 255, 255, 0) 40%,
@@ -192,4 +210,85 @@ h4 {
   min-height: 4rem;
   border-radius: 4px;
   animation-delay: .06s;
+}
+
+/* ------ BOOK SECTION ------ */
+
+.booking-form {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  -webkit-box-shadow: 0 5px 10px -5px rgba(0,0,0,.3);
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,.3);
+  border-radius: 6px;
+}
+
+.booking-form > .booking-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background-image: url(/images/book-background.jpg);
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px 0 0 6px;
+}
+
+.booking-form > form {
+  margin-left: 16em;
+  padding: 2.5em;
+}
+
+.booking-form .form-header {
+  margin-bottom: 2em;
+}
+
+.booking-form .form-group {
+  margin-bottom: 1em;
+}
+
+.booking-form .form-label {
+  color: #b5c1cc;
+  font-weight: 700;
+  -webkit-transition: .2s;
+  transition: .2s;
+  text-transform: uppercase;
+  line-height: 24px;
+  height: 24px;
+  font-size: 14px;
+  z-index: 1;
+}
+
+.booking-form .form-control {
+  background-color: #f7f9fa;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 0;
+  -webkit-transition: .2s;
+  transition: .2s;
+  color: var(--dark);
+  border: 0;
+  font-size: 16px;
+  font-weight: 700;
+  -webkit-box-shadow: inset 0 1px 4px rgba(181,193,204,.3);
+  box-shadow: inset 0 1px 4px rgba(181,193,204,.3);
+}
+
+.booking-form input[type="datetime-local"].form-control:invalid {
+  color: var(--grey);
+}
+
+.booking-form .submit-btn {
+  color: var(--dark);
+  background-color: var(--yellow-accent);
+  font-weight: 700;
+  padding: 13px 35px;
+  font-size: 16px;
+  border: none;
+  width: 100%;
+}
+
+.booking-form .submit-btn:hover {
+  background-color: var(--orange-accent);
 }
