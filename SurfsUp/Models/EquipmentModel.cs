@@ -4,6 +4,7 @@ namespace SurfsUp.Models;
 
 public class EquipmentModel
 {
+    public int ID  { get; internal set; }
     public string Name { get; internal set; }
     public double Length { get; internal set; }
     public double Width { get; internal set; }
