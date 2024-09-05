@@ -21,10 +21,12 @@ public class HomeController : Controller
 
         List<EquipmentModel> equipment = EquipmentRepository.GetEquipment();
         List<SuitModel> suits = SuitRepository.GetSuits();
+        List<AddonModel> addons = AddonsRepository.GetAddons();
         DetailModel model = new()
         {
             Equipment = equipment,
-            Suits = suits
+            Suits = suits,
+            Addons = addons
         };
 
         return View(model);
