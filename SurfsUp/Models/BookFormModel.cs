@@ -17,6 +17,14 @@ public class BookFormModel
     public DateTime Time {get; set;}
 
     [Required]
+    [Display(Name = "Telefonnummer")]
+    public long Phone {get; set;}
+
+    [Required]
+    [Display(Name = "E-mail")]
+    public string Email {get; set;}
+
+    [Required]
     [Display(Name = "Udstyr")]
     public EquipmentModel Equipment {get; set;}
 }
