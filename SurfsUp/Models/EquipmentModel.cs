@@ -12,4 +12,5 @@ public class EquipmentModel
     public string Type { get; internal set; }
     public double Price { get; internal set; }
     public string Equipment { get; internal set; }
+    public string ImagePath { get; internal set; }
 }

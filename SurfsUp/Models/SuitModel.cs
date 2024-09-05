@@ -8,4 +8,5 @@ public class SuitModel
     public string Sizes { get; internal set; }
     public string Type { get; internal set; }
     public string Description { get; internal set; }
+    public string ImagePath { get; internal set; }
 }
