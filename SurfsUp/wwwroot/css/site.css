@@ -120,25 +120,21 @@ nav a:hover hr {
 
 #sidebar {
   display: flex;
-  width: 17rem;
+  width: 18rem;
   height: 100vh;
   position: fixed;
   flex-direction: column;
   background-color: var(--blue-accent);
   color: var(--dark);
+  padding: 0 1.5em;
 }
 
 #logo img {
   width: 100%;
 }
 
-#location {
-  margin: 1.5em;
-}
-
 #shop-info {
-  margin: 1.5em;
-  margin-top: auto;
+  margin: auto 0 1.5em 0;
 }
 
 .fa {
@@ -156,7 +152,7 @@ nav a:hover hr {
 /* ------ ACCOUNT FOR THE SIDEBAR ------ */
 
 .box {
-  margin-left: 17rem;
+  margin-left: 18rem;
 }
 
 /* ------ CONTENT ------ */
@@ -189,14 +185,16 @@ nav a:hover hr {
 }
 
 .image {
+  display: flex;
   height: 200px;
+  justify-content: center;
 }
 
 .image img {
   display: block;
-  width: 100%;
+  /* width: 100%; */
   height: inherit;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 .content {

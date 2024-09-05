@@ -1,11 +1,19 @@
 @model DetailModel
 
 <h1 id="equipment" class="display-4">Udstyr</h1>
-<p>Hos Surf's Up forstår vi, at det rigtige udstyr kan gøre hele forskellen på vandet. Derfor tilbyder vi et bredt
-    udvalg af kvalitetsudstyr, der passer til både begyndere og erfarne surfere. Her er et overblik over det udstyr, du
-    kan leje hos os:
+<p>
+    Hos Surf's Up forstår vi, hvor vigtigt det er at have det rigtige udstyr, når du er ude på vandet. Det kan virkelig være forskellen mellem en god oplevelse og en uforglemmelig en. 
+    Vi ved, at surfudstyr ikke bare er noget, du bruger – det er din nøgle til at maksimere din tid i bølgerne, uanset om du er en nybegynder, der er ved at tage dine første skridt, eller en erfaren surfer, der søger at finpudse dine færdigheder. 
+    Derfor har vi nøje udvalgt et omfattende sortiment af kvalitetsudstyr, der imødekommer behovene hos surfere på alle niveauer.
 </p>
-<h5>Surfbrætter</h5>
+<p>
+    Vi tilbyder ikke blot standardudstyr, men en bred vifte af valgmuligheder, der sikrer, at du kan finde præcis det udstyr, der passer til dine individuelle præferencer og surfforhold. 
+    Vores sortiment inkluderer alt fra surfbrætter i forskellige former og størrelser til våddragter, der beskytter dig mod både kulde og sol. 
+    Hvad end du har brug for et stabilt longboard til at fange dine første bølger eller et hurtigt shortboard til at tage din teknik til det næste niveau, har vi noget for dig. 
+    Derudover tilbyder vi ekstraudstyr som leashes, surf voks og rashguards for at sikre, at du er godt rustet til enhver situation.
+</p>
+<p>Her er et overblik over det udstyr, du kan leje hos os, så du kan finde det, der bedst understøtter din surfoplevelse og hjælper dig med at få mest muligt ud af dine dage på vandet.</p>
+<h2 id="surfboards">Surfbrætter</h5>
 <ul>
     <li><b>Longboards:</b> Perfekt til begyndere og dem, der ønsker en stabil og afslappet surfoplevelse.
         Longboards gør det lettere at fange bølger og holde balancen.</li>
@@ -25,7 +33,8 @@
     {
             <div class="card-equipment">
                 <div class="image">
-                    @if (@equipment.Type == "Shortboard")
+                    <img src="@equipment.ImagePath" alt="equipment">
+                    @* @if (@equipment.Type == "Shortboard")
                     {
                         <img src="~/images/boards/shortboard.png" alt="shortboard">
                     }
@@ -44,7 +53,7 @@
                     else if (@equipment.Type == "SUP")
                     {
                         <img src="~/images/boards/sup.png" alt="sup">
-                    }
+                    } *@
                 </div>
                 <div class="content">
                     <h4>@equipment.Name</h4>
@@ -96,7 +105,7 @@
         }
 </div>
 
-<h5>Våddragter</h5>
+<h2 id="wetsuits">Våddragter</h5>
 <ul>
     <li><b>Våddragter i forskellige tykkelser:</b> Uanset årstiden har vi våddragter, der passer til vejret.
         Tyndere dragter til sommermånederne og tykkere dragter til koldere vandtemperaturer, så du kan holde
@@ -106,29 +115,29 @@
 </ul>
 
 <div class="grid">
-    @foreach (SuitModel suits in Model.Suits)
+    @foreach (SuitModel suit in Model.Suits)
     {
         <div class="card-equipment">
             <div class="image">
-                <img src="~/images/suits/suit.png" alt="suit">
+                <img src="@suit.ImagePath" alt="suit">
             </div>
             <div class="content">
-                <h4>@suits.Name</h4>
+                <h4>@suit.Name</h4>
                 <div class="description">
                     <table>
                         <tr>
                             <th>Størrelse(r):</th>
                             <td></td>
-                            <td>@suits.Sizes</td>
+                            <td>@suit.Sizes</td>
                         </tr>
                         <tr>
                             <th>Type:</th>
                             <td></td>
-                            <td>@suits.Type</td>
+                            <td>@suit.Type</td>
                         </tr>
                     </table>
                     <b>Beskrivelse:</b>
-                    <p>@suits.Description</p>
+                    <p>@suit.Description</p>
                     <button>Lej dragt</button>
                 </div>
             </div>
@@ -136,7 +145,7 @@
     }
 </div>
 
-<h5>Ekstraudstyr:</h5>
+<h2 id="addons">Ekstraudstyr:</h5>
 <ul>
     <li><b>Leashes:</b> Sørg for at dit surfbræt bliver ved din side med en pålidelig leash. Vi tilbyder
         forskellige længder, der passer til dine behov.</li>
