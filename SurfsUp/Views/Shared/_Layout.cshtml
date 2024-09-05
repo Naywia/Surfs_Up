@@ -14,6 +14,11 @@
     <!-- Site Title -->
     <title>Surf's Up</title>
 
+    <!-- Site Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon/favicon-16x16.png">
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
@@ -24,10 +29,12 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <!-- Site Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="~/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon/favicon-16x16.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Cherry+Swash:wght@400;700&family=Chewy&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -37,11 +44,21 @@
         </div>
         <div id="location">
             <h2>Odense</h2>
-            <div id="day0"><p>Mandag <i>(@data[0].DateString)</i><br>@data[0] °C</p></div>
-            <div id="day1"><p>Tirsdag <i>(@data[1].DateString)</i><br>@data[1] °C</p></div>
-            <div id="day2"><p>Onsdag <i>(@data[2].DateString)</i><br>@data[2] °C</p></div>
-            <div id="day3"><p>Torsdag <i>(@data[3].DateString)</i><br>@data[3] °C</p></div>
-            <div id="day4"><p>Fredag <i>(@data[4].DateString)</i><br>@data[4] °C</p></div>
+            <div id="day0">
+                <p>Mandag <i>(@data[0].DateString)</i><br>@data[0] °C</p>
+            </div>
+            <div id="day1">
+                <p>Tirsdag <i>(@data[1].DateString)</i><br>@data[1] °C</p>
+            </div>
+            <div id="day2">
+                <p>Onsdag <i>(@data[2].DateString)</i><br>@data[2] °C</p>
+            </div>
+            <div id="day3">
+                <p>Torsdag <i>(@data[3].DateString)</i><br>@data[3] °C</p>
+            </div>
+            <div id="day4">
+                <p>Fredag <i>(@data[4].DateString)</i><br>@data[4] °C</p>
+            </div>
         </div>
         <div id="shop-info">
             <div id="hours">
@@ -96,7 +113,7 @@
                 <div>
                     Book
                     <i id="shopping-cart" class="fa fa-shopping-cart"></i>
-                    <label id="cart-count">5</label>
+                    <label id="cart-count">0</label>
                 </div>
                 <hr>
             </a>
@@ -110,7 +127,8 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
         var dates = [];
-        @foreach (var d in data) {
+        @foreach (var d in data)
+        {
             @:dates.push(@d.DateUnix * 1000);
         }
 
@@ -118,8 +136,7 @@
             var testDate = new Date(dates[i]).getDate();
             var currDate = new Date().getDate();
 
-            if (testDate === currDate)
-            { document.getElementById(`day${i}`).style.fontWeight = "bold"; }
+            if (testDate === currDate) { document.getElementById(`day${i}`).style.fontWeight = "bold"; }
         }
     </script>
     @await RenderSectionAsync("Scripts", required: false)
