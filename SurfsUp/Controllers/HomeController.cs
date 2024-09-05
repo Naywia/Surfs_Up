@@ -7,15 +7,17 @@ namespace SurfsUp.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    public WeatherData WD { get; set; }
 
     public HomeController(ILogger<HomeController> logger)
     {
+        WD = new();
         _logger = logger;
     }
 
     public IActionResult Index()
     {
-        // var equipment = EquipmentRepository.GetEquipment();
+        this.ViewData["WD"] = WD;
 
         List<EquipmentModel> equipment = EquipmentRepository.GetEquipment();
         List<SuitModel> suits = SuitRepository.GetSuits();
