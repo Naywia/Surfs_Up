@@ -104,6 +104,7 @@ nav a:hover hr {
 }
 
 #cart-count {
+  display: none;
   font-size: 0.7em;
   background: var(--brown-accent);
   padding: .6em;
@@ -329,6 +330,21 @@ nav a:hover hr {
 
 .booking-form input[type="datetime-local"].form-control:invalid {
   color: var(--grey);
+}
+
+#form-equipment {
+  display: flex;
+  flex-direction: column;
+}
+
+#form-equipment-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#book-equipment{
+  flex: 1;
 }
 
 .booking-form .submit-btn {
