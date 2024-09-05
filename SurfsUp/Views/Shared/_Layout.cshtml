@@ -67,10 +67,39 @@
     </div>
     <div class="box">
         <nav>
-            <a onclick="goTo('#practical-info')">Praktisk Info</a>
-            <a onclick="goTo('#equipment')">Udstyr</a>
+            <a onclick="goTo('#practical-info')">
+                <div>Praktisk Info</div>
+                <hr>
+            </a>
+            <div class="subnav">
+                <a onclick="goTo('#equipment')">
+                    <div>Udstyr</div>
+                    <hr>
+                </a>
+                <div class="subnav-content">
+                    <a onclick="goTo('#surfboards')">
+                        <div>Surfbrætter</div>
+                        <hr>
+                    </a>
+                    <a onclick="goTo('#wetsuits')">
+                        <div>Våddragter</div>
+                        <hr>
+                    </a>
+                    <a onclick="goTo('#addons')">
+                        <div>Ekstraudstyr</div>
+                        <hr>
+                    </a>
+                </div>
+            </div>
             @* <a onclick="goTo('#instructors')">Instruktører</a> *@
-            <a onclick="goTo('#book')" id="book-btn">Book</a>
+            <a onclick="goTo('#book')" id="book-btn">
+                <div>
+                    Book
+                    <i id="shopping-cart" class="fa fa-shopping-cart"></i>
+                    <label id="cart-count">5</label>
+                </div>
+                <hr>
+            </a>
         </nav>
         <main id="page" role="main" class="pb-3">
             @RenderBody()

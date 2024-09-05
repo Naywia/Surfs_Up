@@ -49,21 +49,71 @@ nav {
   z-index: 10;
 }
 
+.subnav-content {
+  display: none;
+  position: absolute;
+  background-color: var(--brown-accent);
+  z-index: 1;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+
 nav a {
   display: flex;
   height: 100%;
+  width: 8em;
   padding: 20px;
+  padding-bottom: 15px;
+  font-size: 1.3em;
   box-sizing: border-box;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 nav a:hover {
   cursor: pointer;
-  font-weight: bold;
+}
+
+nav a div {
+  display: flex;
+  align-items: center;
+}
+
+nav a hr {
+  opacity: 0;
+  width: 100%;
+  margin: 0;
+  margin-top: .1em !important;
+  border: 1px solid var(--light);
+}
+
+nav a:hover hr {
+  opacity: 1;
 }
 
 #book-btn {
   background-color: var(--orange-accent);
+}
+
+#shopping-cart {
+  font-size: 1.7em !important;
+  margin-left: .3em;
+}
+
+#cart-count {
+  font-size: 0.7em;
+  background: var(--brown-accent);
+  padding: .6em;
+  border-radius: 50px;
+  /* margin-bottom: auto;
+  margin-left: .1em; */
+  line-height: .5;
+  position: absolute;
+  right: 23px;
+  top: 16px;
 }
 
 /* ------ SIDEBAR ------ */
