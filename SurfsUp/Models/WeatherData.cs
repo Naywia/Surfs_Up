@@ -90,28 +90,24 @@ public class WeatherData
         // The latitude and longitude is for Odense
         string _url = string.Format("https://api.open-meteo.com/v1/forecast?latitude={0}&longitude={1}&daily=temperature_2m_max,temperature_2m_min,uv_index_max,wind_speed_10m_max&timeformat=unixtime&timezone=Europe/Berlin", "55.3959", "10.3883");
         string _json = await FetchData(_url);
+        NullReferenceException nullrefEx = new("JSON data was null... tihi :)");
 
         Dictionary<DAYS, DayData> _dataDict = [];
-        JObject _data = JObject.Parse(_json);        
-        if (_data["daily"] == null || _data["daily"]["time"] == null) {
-            throw new NullReferenceException("JSON object was null... tihi :)");
-        }
-
+        var _data = JObject.Parse(_json)["daily"] ?? throw nullrefEx;
         // All of this stinky code needs some error checking... but not right now B)
-        var _unixStamps = _data["daily"]["time"];
+        var _unixStamps = _data["time"] ?? throw nullrefEx;
         for (int i = 0; i < _unixStamps.Count(); i++) {
             long unixSec = Convert.ToInt64(_unixStamps[i]);
             var d = DateTimeOffset.FromUnixTimeSeconds(unixSec).LocalDateTime;
             DAYS dow = (DAYS)Enum.Parse(typeof(DAYS), d.DayOfWeek.ToString());
             
-            float maxTemp = float.Parse(_data["daily"]["temperature_2m_max"][i].ToString());
-            float minTemp = float.Parse(_data["daily"]["temperature_2m_min"][i].ToString());
-            float uvIndex = float.Parse(_data["daily"]["uv_index_max"][i].ToString());
-            float windSpd = float.Parse(_data["daily"]["wind_speed_10m_max"][i].ToString());
+            float? maxTemp = float.Parse(_data["temperature_2m_max"][i].ToString());
+            float? minTemp = float.Parse(_data["temperature_2m_min"][i].ToString());
+            float? uvIndex = float.Parse(_data["uv_index_max"][i].ToString());
+            float? windSpd = float.Parse(_data["wind_speed_10m_max"][i].ToString());
 
-            _dataDict.Add(dow, new(maxTemp, minTemp, uvIndex, windSpd, d.Date.ToString("dd MMM"), unixSec));
+            _dataDict.Add(dow, new(maxTemp ?? -9.9f, minTemp ?? -9.9f, uvIndex ?? -9.9f, windSpd ?? -9.9f, d.Date.ToString("dd MMM"), unixSec));
         }
-
         return _dataDict;
     }
 }

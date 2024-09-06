@@ -1,6 +1,6 @@
 ﻿@{
     DayData[] data;
-    if (ViewData.TryGetValue("WD", out TModel? mads)) {
+    if (ViewData.TryGetValue("WD", out var mads)) {
         var wd = mads == null ? throw new NullReferenceException("WD wasn't set to anything...") : (WeatherData)mads;
         data = wd.GetDayData(DAYS.Weekdays);
     }
