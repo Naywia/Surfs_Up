@@ -1,6 +1,11 @@
 ﻿@{
-    var wd = (WeatherData)ViewData["WD"];
-    DayData[] data = wd.GetDayData(DAYS.Weekdays);
+    DayData[] data;
+    if (ViewData.TryGetValue("WD", out TModel? mads)) {
+        var wd = mads == null ? throw new NullReferenceException("WD wasn't set to anything...") : (WeatherData)mads;
+        data = wd.GetDayData(DAYS.Weekdays);
+    }
+    else
+    { throw new NullReferenceException("WD wasn't set to anything..."); }
 }
 
 <!DOCTYPE html>
@@ -90,7 +95,10 @@
             var currDate = new Date().getDate();
 
             if (testDate === currDate)
-            { document.getElementById(`day${i}`).style.fontWeight = "bold"; }
+            {
+                var elem = document.getElementById(`day${i}`);
+                elem.style.fontWeight = "bold";
+            }
         }
     </script>
     @await RenderSectionAsync("Scripts", required: false)
