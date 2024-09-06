@@ -41,6 +41,10 @@ a {
   color: var(--light) !important;
 }
 
+ul, ol {
+  line-height: 2em;
+}
+
 /* ------ NAV ------ */
 
 nav {
