@@ -26,5 +26,5 @@ public class BookFormModel
 
     [Required]
     [Display(Name = "Udstyr")]
-    public List<DetailModel> Equipment {get; set;}
+    public DetailModel Equipment {get; set;}
 }

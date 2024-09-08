@@ -4,14 +4,14 @@ namespace SurfsUp.Models;
 
 public class EquipmentModel
 {
-    public int ID  { get; internal set; }
-    public string Name { get; internal set; }
-    public double Length { get; internal set; }
-    public double Width { get; internal set; }
-    public double Thickness { get; internal set; }
-    public double Volume { get; internal set; }
-    public string Type { get; internal set; }
-    public double Price { get; internal set; }
-    public string Equipment { get; internal set; }
-    public string ImagePath { get; internal set; }
+    public int ID  { get; set; }
+    public string Name { get; set; }
+    public double Length { get; set; }
+    public double Width { get; set; }
+    public double Thickness { get; set; }
+    public double Volume { get; set; }
+    public string Type { get; set; }
+    public double Price { get; set; }
+    public string Equipment { get; set; }
+    public string ImagePath { get; set; }
 }

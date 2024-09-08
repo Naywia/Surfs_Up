@@ -1,6 +1,7 @@
 ﻿@{
     var wd = (WeatherData)ViewData["WD"];
     DayData[] data = wd.GetDayData(DAYS.Weekdays);
+    DetailModel cart = (DetailModel)ViewData["cart"];
 }
 
 <!DOCTYPE html>
@@ -113,7 +114,7 @@
                 <div>
                     Book
                     <i id="shopping-cart" class="fa fa-shopping-cart"></i>
-                    <label id="cart-count">0</label>
+                    <label id="cart-count">@Context.Session.GetCartCount()</label>
                 </div>
                 <hr>
             </a>

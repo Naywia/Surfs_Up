@@ -81,7 +81,7 @@
                             </table>
                         </div>
                     </div>
-                    <button class="add-to-cart">Lej Board</button>
+                    <button class="add-to-cart" onclick="addToCart(@equipment.ID, 'equipment')">Lej Board</button>
                 </div>
             </div>
         }
@@ -123,7 +123,7 @@
                         <p>@suit.Description</p>
                     </div>
                 </div>
-                <button class="add-to-cart">Lej dragt</button>
+                <button class="add-to-cart" onclick="addToCart(@suit.ID, 'suit')">Lej dragt</button>
             </div>
         </div>
     }
@@ -157,8 +157,40 @@
                         <p>@addon.Description</p>
                     </div>
                 </div>
-                <button class="add-to-cart">Lej ekstraudstyr</button>
+                <button class="add-to-cart" onclick="addToCart(@addon.ID, 'addon')">Lej ekstraudstyr</button>
             </div>
         </div>
     }
 </div>
+
+<script type="text/javascript">
+    function addToCart(ID, type) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddToCart", "Home")', // URL to the action method
+            data: { 
+                id: ID,
+                type: type
+            },
+        success: function(response) {
+            // Update cart count in the UI
+            updateCartCount();
+            updateCartItems();
+        },
+        error: function() {
+            alert('Error adding item to cart.');
+        }
+        });
+    }
+
+    function updateCartCount() {
+        $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetCartCount", "Home")',
+                success: function(count) {
+                    // Update cart count in the UI
+                    $('#cart-count').html(count);
+                }
+            });
+    }
+</script>
