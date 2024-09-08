@@ -1,0 +1,85 @@
+@model BookFormModel
+
+<h1 id="book" class="display-4">Book</h1>
+<p>
+    Hos Surf's Up er vores mål at sikre, at du har det bedste udstyr til din surfoplevelse. Uanset hvad du vælger, kan
+    du være sikker på, at alt vores udstyr er vedligeholdt og klar til brug. Lej udstyret direkte på vores hjemmeside,
+    og forbered dig på en fantastisk dag på vandet! Det er nemt og hurtigt. Følg blot disse trin, og du vil være klar
+    til at ramme
+    bølgerne på ingen tid!
+</p>
+<h5>Ændringer og Aflysninger</h5>
+
+<ul>
+    <li><b>Ændringer:</b> Hvis dine planer ændrer sig, kan du let opdatere din booking direkte på vores hjemmeside. Klik
+        her, intast informationerne om din booking, og juster den uden problemer.</li>
+    <li><b>Aflysninger:</b> Vi forstår, at uforudsete ting kan ske. Du kan aflyse din booking op til 24 timer før
+        afhentning for fuld refundering, ved at ringe til vores kundeservice.</li>
+</ul>
+<h5>Kundeservice</h5>
+<p>Har du spørgsmål eller brug for hjælp med din booking? Vores kundeserviceteam er altid klar til at hjælpe dig.
+    Kontakt os via chat, e-mail, eller telefon, så sørger vi for, at din oplevelse med Surf's Up bliver så glat som
+    muligt.
+
+    Book dit udstyr i dag, og glæd dig til en fantastisk dag på bølgerne med Surf's Up!</p>
+<div class="booking-form">
+    <div class="booking-bg"></div>
+    <form method="post" asp-controller="home" asp-action="addbooking">
+        <div class="form-header">
+            <h2>Book dit udstyr!</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="FirstName" class="form-label"></label>
+                            <input type="text" asp-for="FirstName" class="form-control"
+                                placeholder="Skriv dit fornavn her">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LastName" class="form-label"></label>
+                            <input type="text" asp-for="LastName" class="form-control"
+                                placeholder="Skriv dit efternavn her">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Time" class="form-label"></label>
+                    <input type="datetime-local" asp-for="Time" class="form-control">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Phone" class="form-label"></label>
+                            <input type="tel" asp-for="Phone" class="form-control"
+                                placeholder="Skriv dit telefonnummer her">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input type="email" asp-for="Email" class="form-control" placeholder="Skriv din e-mail her">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="form-equipment" class="col-md-6">
+                <div id="form-equipment-inner" class="form-group">
+                    <label asp-for="Equipment" class="form-label"></label>
+                    <div id="book-equipment" class="form-control">
+                        <div id="cart-items">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-btn">
+            <button class="submit-btn">Book</button>
+        </div>
+    </form>
+</div>

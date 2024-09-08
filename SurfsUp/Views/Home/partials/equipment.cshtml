@@ -1,0 +1,196 @@
+@model DetailModel
+
+<h1 id="equipment" class="display-4">Udstyr</h1>
+<p>
+    Hos Surf's Up forstår vi, hvor vigtigt det er at have det rigtige udstyr, når du er ude på vandet. Det kan virkelig være forskellen mellem en god oplevelse og en uforglemmelig en. 
+    Vi ved, at surfudstyr ikke bare er noget, du bruger – det er din nøgle til at maksimere din tid i bølgerne, uanset om du er en nybegynder, der er ved at tage dine første skridt, eller en erfaren surfer, der søger at finpudse dine færdigheder. 
+    Derfor har vi nøje udvalgt et omfattende sortiment af kvalitetsudstyr, der imødekommer behovene hos surfere på alle niveauer.
+</p>
+<p>
+    Vi tilbyder ikke blot standardudstyr, men en bred vifte af valgmuligheder, der sikrer, at du kan finde præcis det udstyr, der passer til dine individuelle præferencer og surfforhold. 
+    Vores sortiment inkluderer alt fra surfbrætter i forskellige former og størrelser til våddragter, der beskytter dig mod både kulde og sol. 
+    Hvad end du har brug for et stabilt longboard til at fange dine første bølger eller et hurtigt shortboard til at tage din teknik til det næste niveau, har vi noget for dig. 
+    Derudover tilbyder vi ekstraudstyr som leashes, surf voks og rashguards for at sikre, at du er godt rustet til enhver situation.
+</p>
+<p>Her er et overblik over det udstyr, du kan leje hos os, så du kan finde det, der bedst understøtter din surfoplevelse og hjælper dig med at få mest muligt ud af dine dage på vandet.</p>
+<h2 id="surfboards">Surfbrætter</h5>
+<ul>
+    <li><b>Longboards:</b> Perfekt til begyndere og dem, der ønsker en stabil og afslappet surfoplevelse.
+        Longboards gør det lettere at fange bølger og holde balancen.</li>
+    <li><b>Shortboards:</b> Ideelle til mere erfarne surfere, der ønsker hurtige og manøvredygtige brætter.
+        Shortboards giver dig mulighed for at lave skarpe sving og tricks på bølgerne.</li>
+    <li><b>Funboards:</b> En mellemting mellem longboards og shortboards, funboards er gode for dem, der er klar
+        til at tage skridtet videre fra nybegynderbrættet, men stadig ønsker lidt ekstra stabilitet.</li>
+    <li><b>Fishboards (Fish):</b> Fishboards er designet til de surfere, der leder efter en sjov og alsidig
+        surfoplevelse. Disse kortere, bredere brætter er perfekte til små til mellemstore bølger og giver dig både
+        hastighed og manøvredygtighed. De er et populært valg for dem, der ønsker at udforske en anden stil eller
+        forbedre deres teknik i mindre bølger.</li>
+    <li><b>SUP-brætter (Stand-Up Paddleboards):</b> Hvis du er mere til rolig padling end at fange bølger, kan
+        du leje et SUP-bræt og udforske vandet i dit eget tempo.</li>
+</ul>
+<div class="grid">
+    @foreach (EquipmentModel equipment in Model.Equipment)
+    {
+            <div class="card-equipment">
+                <div class="image">
+                    <img src="@equipment.ImagePath" alt="equipment">
+                </div>
+                <div class="content">
+                    <div>
+                        <h4>@equipment.Name</h4>
+                        <div class="description">
+                            <table>
+                                <tr>
+                                    <th>Længde(Inches):</th>
+                                    <td></td>
+                                    <td>@equipment.Length</td>
+                                </tr>
+                                <tr>
+                                    <th>Bredde(Inches):</th>
+                                    <td></td>
+                                    <td>@equipment.Width</td>
+                                </tr>
+                                <tr>
+                                    <th>Tykkelse(Inches):</th>
+                                    <td></td>
+                                    <td>@equipment.Thickness</td>
+                                </tr>
+                                <tr>
+                                    <th>Volumen(L):</th>
+                                    <td></td>
+                                    <td>@equipment.Volume</td>
+                                </tr>
+                                <tr>
+                                    <th>Type:</th>
+                                    <td></td>
+                                    <td>@equipment.Type</td>
+                                </tr>
+                                <tr>
+                                    <th>Pris:</th>
+                                    <td></td>
+                                    <td>@equipment.Price</td>
+                                </tr>
+                                @if (@equipment.Equipment != "")
+                                {
+                                    <tr>
+                                        <th>Tilbehør:</th>
+                                        <td></td>
+                                        <td>@equipment.Equipment</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(@equipment.ID, 'equipment')">Lej Board</button>
+                </div>
+            </div>
+        }
+</div>
+
+<h2 id="wetsuits">Våddragter</h5>
+<ul>
+    <li><b>Våddragter i forskellige tykkelser:</b> Uanset årstiden har vi våddragter, der passer til vejret.
+        Tyndere dragter til sommermånederne og tykkere dragter til koldere vandtemperaturer, så du kan holde
+        varmen, mens du surfer.</li>
+    <li><b>Fuld- og kortærmede dragter:</b> Vælg mellem fuld længde våddragter for maksimal beskyttelse eller
+        kortærmede dragter, der giver større bevægelsesfrihed i varmere vejr.</li>
+</ul>
+
+<div class="grid">
+    @foreach (SuitModel suit in Model.Suits)
+    {
+        <div class="card-equipment">
+            <div class="image">
+                <img src="@suit.ImagePath" alt="suit">
+            </div>
+            <div class="content">
+                <div>
+                    <h4>@suit.Name</h4>
+                    <div class="description">
+                        <table>
+                            <tr>
+                                <th>Størrelse(r):</th>
+                                <td></td>
+                                <td>@suit.Sizes</td>
+                            </tr>
+                            <tr>
+                                <th>Type:</th>
+                                <td></td>
+                                <td>@suit.Type</td>
+                            </tr>
+                        </table>
+                        <b>Beskrivelse:</b>
+                        <p>@suit.Description</p>
+                    </div>
+                </div>
+                <button class="add-to-cart" onclick="addToCart(@suit.ID, 'suit')">Lej dragt</button>
+            </div>
+        </div>
+    }
+</div>
+
+<h2 id="addons">Ekstraudstyr:</h5>
+<ul>
+    <li><b>Leashes:</b> Sørg for at dit surfbræt bliver ved din side med en pålidelig leash. Vi tilbyder forskellige længder, der passer til dine behov.</li>
+    <li><b>Surf voks:</b> Få bedre greb på brættet med vores udvalg af surfvoks til forskellige vandtemperaturer. Perfekt til at forbedre stabiliteten, når du står på brættet.</li>
+    <li><b>Rashguards:</b> Beskyt din hud mod sol og irritation med en rashguard. Disse lette, hurtigtørrende trøjer er ideelle til lange dage på vandet.</li>
+</ul>
+<div class="grid">
+@foreach (AddonModel addon in Model.Addons)
+    {
+        <div class="card-equipment">
+            <div class="image">
+                <img src="@addon.ImagePath" alt="addon">
+            </div>
+            <div class="content">
+                <div>
+                    <h4>@addon.Name</h4>
+                    <div class="description">
+                        <table>
+                            <tr>
+                                <th>Type:</th>
+                                <td></td>
+                                <td>@addon.Type</td>
+                            </tr>
+                        </table>
+                        <b>Beskrivelse:</b>
+                        <p>@addon.Description</p>
+                    </div>
+                </div>
+                <button class="add-to-cart" onclick="addToCart(@addon.ID, 'addon')">Lej ekstraudstyr</button>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    function addToCart(ID, type) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddToCart", "Home")', // URL to the action method
+            data: { 
+                id: ID,
+                type: type
+            },
+        success: function(response) {
+            // Update cart count in the UI
+            updateCartCount();
+            updateCartItems();
+        },
+        error: function() {
+            alert('Error adding item to cart.');
+        }
+        });
+    }
+
+    function updateCartCount() {
+        $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetCartCount", "Home")',
+                success: function(count) {
+                    // Update cart count in the UI
+                    $('#cart-count').html(count);
+                }
+            });
+    }
+</script>
