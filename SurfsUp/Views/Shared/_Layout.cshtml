@@ -1,7 +1,11 @@
-﻿@{
-    var wd = (WeatherData)ViewData["WD"];
-    DayData[] data = wd.GetDayData(DAYS.Weekdays);
-    DetailModel cart = (DetailModel)ViewData["cart"];
+@{         
+    DayData[] data;
+    if (ViewData.TryGetValue("WD", out var mads)) {
+        var wd = mads == null ? throw new NullReferenceException("WD wasn't set to anything...") : (WeatherData)mads;
+        data = wd.GetDayData(DAYS.Weekdays);
+    }
+    else
+    { throw new NullReferenceException("WD wasn't set to anything..."); }
 }
 
 <!DOCTYPE html>
@@ -137,7 +141,12 @@
             var testDate = new Date(dates[i]).getDate();
             var currDate = new Date().getDate();
 
-            if (testDate === currDate) { document.getElementById(`day${i}`).style.fontWeight = "bold"; }
+
+            if (testDate === currDate)
+            {
+                var elem = document.getElementById(`day${i}`);
+                elem.style.fontWeight = "bold";
+            }
         }
     </script>
     @await RenderSectionAsync("Scripts", required: false)
