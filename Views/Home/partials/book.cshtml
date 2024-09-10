@@ -24,7 +24,7 @@
     Book dit udstyr i dag, og glæd dig til en fantastisk dag på bølgerne med Surf's Up!</p>
 <div class="booking-form">
     <div class="booking-bg"></div>
-    <form method="post" asp-controller="home" asp-action="addbooking">
+    <div id="form-body">
         <div class="form-header">
             <h2>Book dit udstyr!</h2>
         </div>
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="form-btn">
-            <button class="submit-btn">Book</button>
+            <button class="submit-btn" onclick="submitBooking()">Book</button>
         </div>
-    </form>
+    </div>
 </div>

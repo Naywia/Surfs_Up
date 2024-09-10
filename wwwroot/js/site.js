@@ -40,7 +40,6 @@ function updateCartItems() {
       // Populate new cart items
       if (data.equipment && data.equipment.length > 0) {
         data.equipment.forEach(function (item) {
-          console.log(data);
           $('#cart-items').append('<label>' + item.name + '</label><br>');
         });
       }
@@ -93,3 +92,43 @@ $(document).ready(function () {
     dateTime.value = limitTime(dateTime.value);
   };
 });
+
+function submitBooking() {
+  $.ajax({
+    url: '/Book/AddBooking',
+    type: 'POST',
+    success: function (response) {
+      if (response.message === "Booking added!") {
+        booking = response.booking;
+        cart = booking.equipment;
+        let modalText = "<h3>Tak for din booking</h3>"
+        modalText += "<p>Booking reference: #" + booking.ID + "</p>";
+        modalText += "<br>";
+        
+        modalText += '<div id="booked-items">';
+        if (cart.equipment && cart.equipment.length > 0) {
+          cart.equipment.forEach(function (item) {
+            modalText += '<label>' + item.name + '</label><br>';
+          });
+        }
+  
+        if (cart.suits && cart.suits.length > 0) {
+          cart.suits.forEach(function (item) {
+            modalText += '<label>' + item.name + '</label><br>';
+          });
+        }
+  
+        if (cart.addons && cart.addons.length > 0) {
+          cart.addons.forEach(function (item) {
+            modalText += '<label>' + item.name +'</label><br>';
+          });
+        }
+
+        console.log(modalText);
+      }
+    },
+    error: function () {
+      alert('Din booking fejlede');
+    }
+  });
+}

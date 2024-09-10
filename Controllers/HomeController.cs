@@ -29,7 +29,6 @@ public class HomeController : Controller
         this.ViewData["WD"] = WD;
 
         cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel() { Equipment = new List<EquipmentModel>(), Suits = new List<SuitModel>(), Addons = new List<AddonModel>() };
-        this.ViewData["cart"] = cart;
         DetailModel model = new()
         {
             Equipment = equipment,
@@ -85,13 +84,5 @@ public class HomeController : Controller
     {
         var cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel();
         return Json(cart);
-    }
-
-    [HttpPost]
-    public IActionResult AddBooking(BookFormModel bookForm)
-    {
-        bookForm.Equipment = cart;
-        BookRepository.Add(bookForm);
-        return View(nameof(Index));
     }
 }

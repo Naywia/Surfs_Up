@@ -299,7 +299,7 @@ nav a:hover hr {
   border-radius: 6px 0 0 6px;
 }
 
-.booking-form > form {
+.booking-form > #form-body {
   margin-left: 16em;
   padding: 2.5em;
 }

@@ -4,6 +4,8 @@ namespace SurfsUp.Models;
 
 public class BookFormModel
 {
+    public string ID {get; set;}
+    
     [Required]
     [Display(Name = "Fornavn")]
     public string FirstName {get; set;}
