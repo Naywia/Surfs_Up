@@ -18,7 +18,9 @@ body {
 
 /* ------ HTML TAGS ------ */
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: Cherry Swash, Lobster, Sans-Serif;
 }
 
@@ -41,8 +43,22 @@ a {
   color: var(--light) !important;
 }
 
-ul, ol {
+ul,
+ol {
   line-height: 2em;
+}
+
+button {
+  width: 100%;
+  background-color: var(--yellow-accent);
+  color: var(--dark);
+  border: none;
+  margin-top: 1em;
+  padding: 0.5em;
+}
+
+button:hover {
+  background-color: var(--orange-accent);
 }
 
 /* ------ NAV ------ */
@@ -55,8 +71,10 @@ nav {
   color: var(--light);
   justify-content: end;
   align-items: center;
-  width: -moz-available;          /* For Mozzila */
-  width: -webkit-fill-available;  /* For Chrome */
+  width: -moz-available;
+  /* For Mozzila */
+  width: -webkit-fill-available;
+  /* For Chrome */
   z-index: 10;
 }
 
@@ -161,6 +179,31 @@ nav a:hover hr {
   margin-left: 0;
 }
 
+/* ------ MODAL ------ */
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  /* Make EVERYTHING be behind this; besides it's children */
+  z-index: 40;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add padding and center-align text to the container */
+#modal-container {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 60%;
+  padding: 16px;
+  text-align: center;
+}
+
 /* ------ ACCOUNT FOR THE SIDEBAR ------ */
 
 .box {
@@ -228,31 +271,16 @@ nav a:hover hr {
   vertical-align: top;
 }
 
-.add-to-cart {
-  width: 100%;
-  background-color: var(--yellow-accent);
-  color: var(--dark);
-  border: none;
-  margin-top: 1em;
-  padding: 0.5em;
-}
-
-.add-to-cart:hover {
-  background-color: var(--orange-accent);
-}
-
 /* ------ SKELETON (CARD/EQUIPMENT) ------ */
 
 .loading .image,
 .loading h4,
 .loading .description {
   background-color: var(--grey);
-  background: linear-gradient(
-    100deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, .5) 50%,
-    rgba(255, 255, 255, 0) 60%
-  ) var(--loading-grey);
+  background: linear-gradient(100deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, .5) 50%,
+      rgba(255, 255, 255, 0) 60%) var(--loading-grey);
   background-size: 200% 100%;
   background-position-x: 180%;
   animation: 1s loading ease-in-out infinite;
@@ -282,12 +310,12 @@ nav a:hover hr {
   position: relative;
   width: 100%;
   background: #fff;
-  -webkit-box-shadow: 0 5px 10px -5px rgba(0,0,0,.3);
-  box-shadow: 0 5px 10px -5px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, .3);
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, .3);
   border-radius: 6px;
 }
 
-.booking-form > .booking-bg {
+.booking-form>.booking-bg {
   position: absolute;
   left: 0;
   top: 0;
@@ -299,7 +327,7 @@ nav a:hover hr {
   border-radius: 6px 0 0 6px;
 }
 
-.booking-form > #form-body {
+.booking-form>#form-body {
   margin-left: 16em;
   padding: 2.5em;
 }
@@ -312,7 +340,7 @@ nav a:hover hr {
   margin-bottom: 1em;
 }
 
-.booking-form .form-label {
+.form-label {
   color: #b5c1cc;
   font-weight: 700;
   -webkit-transition: .2s;
@@ -324,7 +352,7 @@ nav a:hover hr {
   z-index: 1;
 }
 
-.booking-form .form-control {
+.form-control {
   background-color: #f7f9fa;
   height: 40px;
   padding: 0 10px;
@@ -335,39 +363,29 @@ nav a:hover hr {
   border: 0;
   font-size: 16px;
   font-weight: 700;
-  -webkit-box-shadow: inset 0 1px 4px rgba(181,193,204,.3);
-  box-shadow: inset 0 1px 4px rgba(181,193,204,.3);
+  -webkit-box-shadow: inset 0 1px 4px rgba(181, 193, 204, .3);
+  box-shadow: inset 0 1px 4px rgba(181, 193, 204, .3);
 }
 
 .booking-form input[type="datetime-local"].form-control:invalid {
   color: var(--grey);
 }
 
-#form-equipment {
+#form-equipment, #booking-equipment {
   display: flex;
   flex-direction: column;
 }
 
-#form-equipment-inner {
+#form-equipment-inner, #booking-equipment-inner {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-#book-equipment{
+.book-equipment {
   flex: 1;
 }
 
 .booking-form .submit-btn {
-  color: var(--dark);
-  background-color: var(--yellow-accent);
   font-weight: 700;
-  padding: 13px 35px;
-  font-size: 16px;
-  border: none;
-  width: 100%;
-}
-
-.booking-form .submit-btn:hover {
-  background-color: var(--orange-accent);
 }

@@ -94,12 +94,12 @@ $(document).ready(function () {
 });
 
 // Get the modal
-var modal = document.getElementById('id01');
+var modal = $('#booking-confirmation');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    modalClose();
   }
 }
 
@@ -111,36 +111,42 @@ function submitBooking() {
       if (response.message === "Booking added!") {
         booking = response.booking;
         cart = booking.equipment;
-        let modalText = "<h3>Tak for din booking</h3>"
-        modalText += "<p>Booking reference: #" + booking.ID + "</p>";
-        modalText += "<br>";
+
+        $("#booking-id").html(booking.ID);
+        $("#booking-first-name").html(booking.FirstName);
+        $("#booking-last-name").html(booking.LastName);
+        $("#booking-time").html(booking.Time);
+        $("#booking-phone").html(booking.Phone);
+        $("#booking-email").html(booking.Email);
+       
         
-        modalText += '<div id="booked-items">';
         if (cart.equipment && cart.equipment.length > 0) {
           cart.equipment.forEach(function (item) {
-            modalText += '<label>' + item.name + '</label><br>';
+            $('#booking-items').append('<label>' + item.name +'</label><br>');
           });
         }
   
         if (cart.suits && cart.suits.length > 0) {
           cart.suits.forEach(function (item) {
-            modalText += '<label>' + item.name + '</label><br>';
+            $('#booking-items').append('<label>' + item.name +'</label><br>');
           });
         }
   
         if (cart.addons && cart.addons.length > 0) {
           cart.addons.forEach(function (item) {
-            modalText += '<label>' + item.name +'</label><br>';
+            $('#booking-items').append('<label>' + item.name +'</label><br>');
           });
         }
 
-        console.log(modalText);
-        $("#modal-container").prepend(modalText);
-        document.getElementById('booking-confirmation').style.display='block';
+        modal.css("display", "block");
       }
     },
     error: function () {
       alert('Din booking fejlede');
     }
   });
+}
+
+function modalClose() {
+  modal.css("display", "none");
 }

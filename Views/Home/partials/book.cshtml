@@ -1,5 +1,12 @@
 @model BookFormModel
 
+
+@* @{
+    Html.RenderPartial("modal.cshtml", Model);
+} *@
+
+<partial name="modal.cshtml" />
+
 <h1 id="book" class="display-4">Book</h1>
 <p>
     Hos Surf's Up er vores mål at sikre, at du har det bedste udstyr til din surfoplevelse. Uanset hvad du vælger, kan
@@ -49,7 +56,8 @@
 
                 <div class="form-group">
                     <label asp-for="Time" class="form-label"></label>
-                    <input type="datetime-local" asp-for="Time" class="form-control" id="date-form" onchange="limeTime()">
+                    <input type="datetime-local" asp-for="Time" class="form-control" id="date-form"
+                        onchange="limeTime()">
                 </div>
 
                 <div class="row">
@@ -71,7 +79,7 @@
             <div id="form-equipment" class="col-md-6">
                 <div id="form-equipment-inner" class="form-group">
                     <label asp-for="Equipment" class="form-label"></label>
-                    <div id="book-equipment" class="form-control">
+                    <div class="form-control book-equipment">
                         <div id="cart-items">
                         </div>
                     </div>
