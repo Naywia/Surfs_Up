@@ -63,6 +63,33 @@ function updateCartItems() {
   });
 }
 
+function limitTime(date) {
+  let currTime  = `${date}`.split("T")[1].split(":");
+  let hour      = parseInt(currTime[0]);
+  let minute    = parseInt(currTime[1]);
+
+  let rounded   = Math.round(((hour * 60) + minute) / 15) * 15;
+  let roundHour = ''+Math.floor(rounded / 60);
+  let roundMin  = ''+rounded%60;
+
+  let result = `${roundHour}:${roundMin.padStart(2, '0')}`;  
+  return `${date}`.replace(`${currTime[0]}:${currTime[1]}`, result);
+}
+
 $(document).ready(function () {
   updateCartItems(); // Load cart items on page load
+
+  // Dette er fra denne søde mand på Stack'en
+  // https://stackoverflow.com/questions/24468518/html5-input-datetime-local-default-value-of-today-and-current-time
+  const today = new Date();
+  const localDate = new Date(today - today.getTimezoneOffset() * 60000);  // This converts the time to the actual current time
+  localDate.setSeconds(null);
+  localDate.setMilliseconds(null);
+
+  var dateTime = $("#date-form")[0];
+  dateTime.value = limitTime(localDate.toISOString().slice(0, -1));
+
+  dateTime.onchange = () => {
+    dateTime.value = limitTime(dateTime.value);
+  };
 });
