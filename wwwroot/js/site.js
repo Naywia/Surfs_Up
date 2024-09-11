@@ -125,7 +125,6 @@ function submitBooking() {
         $("#booking-time").val(booking.time);
         $("#booking-phone").val(booking.phone);
         $("#booking-email").val(booking.email);
-       
         
         if (cart.equipment && cart.equipment.length > 0) {
           cart.equipment.forEach(function (item) {
