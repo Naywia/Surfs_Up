@@ -107,17 +107,24 @@ function submitBooking() {
   $.ajax({
     url: '/Book/AddBooking',
     type: 'POST',
+    data: {
+      firstName: $("#FirstName").val(),
+      lastName: $("#LastName").val(),
+      time: $("#Time").val(),
+      phone: $("#Phone").val(),
+      email: $("#Email").val()
+    },
     success: function (response) {
       if (response.message === "Booking added!") {
         booking = response.booking;
         cart = booking.equipment;
 
-        $("#booking-id").html(booking.ID);
-        $("#booking-first-name").html(booking.FirstName);
-        $("#booking-last-name").html(booking.LastName);
-        $("#booking-time").html(booking.Time);
-        $("#booking-phone").html(booking.Phone);
-        $("#booking-email").html(booking.Email);
+        $("#booking-id").html(booking.id);
+        $("#booking-first-name").val(booking.firstName);
+        $("#booking-last-name").val(booking.lastName);
+        $("#booking-time").val(booking.time);
+        $("#booking-phone").val(booking.phone);
+        $("#booking-email").val(booking.email);
        
         
         if (cart.equipment && cart.equipment.length > 0) {

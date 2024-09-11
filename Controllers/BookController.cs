@@ -13,14 +13,22 @@ public class BookController : Controller
     }
 
     [HttpPost]
-    public JsonResult AddBooking(BookFormModel bookForm)
+    public JsonResult AddBooking(string firstName, string lastName, DateTime time, long phone, string email)
     {
-        bookForm.ID = IDMaker();
-        bookForm.Equipment = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel()
+        BookFormModel bookForm = new()
         {
-            Equipment = new List<EquipmentModel>(),
-            Suits = new List<SuitModel>(),
-            Addons = new List<AddonModel>()
+            ID = IDMaker(),
+            FirstName = firstName,
+            LastName = lastName,
+            Time = time,
+            Phone = phone,
+            Email = email,
+            Equipment = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel()
+            {
+                Equipment = new List<EquipmentModel>(),
+                Suits = new List<SuitModel>(),
+                Addons = new List<AddonModel>()
+            }
         };
         BookRepository.Add(bookForm);
         // return View(nameof(Index));

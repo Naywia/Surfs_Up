@@ -179,31 +179,6 @@ nav a:hover hr {
   margin-left: 0;
 }
 
-/* ------ MODAL ------ */
-
-/* The Modal (background) */
-.modal {
-  display: none;
-  position: fixed;
-  /* Make EVERYTHING be behind this; besides it's children */
-  z-index: 40;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  justify-content: center;
-  align-items: center;
-}
-
-/* Add padding and center-align text to the container */
-#modal-container {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto;
-  border: 1px solid #888;
-  width: 60%;
-  padding: 16px;
-  text-align: center;
-}
-
 /* ------ ACCOUNT FOR THE SIDEBAR ------ */
 
 .box {
@@ -388,4 +363,32 @@ nav a:hover hr {
 
 .booking-form .submit-btn {
   font-weight: 700;
+}
+
+/* ------ MODAL ------ */
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  /* Make EVERYTHING be behind this; besides it's children */
+  z-index: 40;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add padding and center-align text to the container */
+#modal-container {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 60%;
+  padding: 16px;
+}
+
+#booking-svg {
+  width: 18%;
 }
