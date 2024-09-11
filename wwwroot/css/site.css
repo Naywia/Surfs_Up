@@ -197,6 +197,10 @@ nav a:hover hr {
   aspect-ratio: 16/9;
 }
 
+.carousel-control-next:hover, .carousel-control-prev:hover {
+  background-color: transparent !important;
+}
+
 /* ------ EQUIPMENT ------ */
 
 .grid {
