@@ -1,5 +1,12 @@
 @model BookFormModel
 
+
+@* @{
+    Html.RenderPartial("modal.cshtml", Model);
+} *@
+
+<partial name="modal.cshtml" />
+
 <h1 id="book" class="display-4">Book</h1>
 <p>
     Hos Surf's Up er vores mål at sikre, at du har det bedste udstyr til din surfoplevelse. Uanset hvad du vælger, kan
@@ -24,7 +31,7 @@
     Book dit udstyr i dag, og glæd dig til en fantastisk dag på bølgerne med Surf's Up!</p>
 <div class="booking-form">
     <div class="booking-bg"></div>
-    <form method="post" asp-controller="home" asp-action="addbooking">
+    <div id="form-body">
         <div class="form-header">
             <h2>Book dit udstyr!</h2>
         </div>
@@ -49,7 +56,7 @@
 
                 <div class="form-group">
                     <label asp-for="Time" class="form-label"></label>
-                    <input type="datetime-local" asp-for="Time" class="form-control">
+                    <input type="datetime-local" asp-for="Time" class="form-control" id="date-form">
                 </div>
 
                 <div class="row">
@@ -71,7 +78,7 @@
             <div id="form-equipment" class="col-md-6">
                 <div id="form-equipment-inner" class="form-group">
                     <label asp-for="Equipment" class="form-label"></label>
-                    <div id="book-equipment" class="form-control">
+                    <div class="form-control book-equipment">
                         <div id="cart-items">
                         </div>
                     </div>
@@ -79,7 +86,7 @@
             </div>
         </div>
         <div class="form-btn">
-            <button class="submit-btn">Book</button>
+            <button class="submit-btn" onclick="submitBooking()">Book</button>
         </div>
-    </form>
+    </div>
 </div>
