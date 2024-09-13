@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SurfsUp.Models;
 using SurfsUp.Extensions;
+using Newtonsoft.Json;
 
 namespace SurfsUp.Controllers;
 
@@ -18,13 +19,25 @@ public class HomeController : Controller
     public HomeController(ILogger<HomeController> logger)
     {
         WD = new();
-
         _logger = logger;
     }
 
     public IActionResult Index()
     {
         this.ViewData["WD"] = WD;
+
+        if (TempData["ShowModal"] != null && TempData["ShowModal"].ToString() == "true")
+    {
+        // Retrieve booking information from TempData
+        var bookingInfoJson = TempData["BookingInfo"] as string;
+        if (!string.IsNullOrEmpty(bookingInfoJson))
+        {
+            // Deserialize the booking information back into a BookFormModel object
+            var bookingInfo = JsonConvert.DeserializeObject<BookingModel>(bookingInfoJson);
+            ViewBag.BookingInfo = bookingInfo;
+            ViewBag.ShowModal = "show"; // Flag to display the modal
+        }
+    }
 
         cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel() { Equipment = new List<EquipmentModel>(), Suits = new List<SuitModel>(), Addons = new List<AddonModel>() };
         DetailModel model = new()

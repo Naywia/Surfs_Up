@@ -1,63 +1,94 @@
-<div id="booking-confirmation" class="modal">
+<div id="booking-confirmation" class="modal @ViewBag.ShowModal">
     <div id="modal-container">
-        <div style="text-align: center;">
-            <img src="~/images/confirm.svg" id="booking-svg">
-            <h3>Tak for din booking!</h3>
-            <p>Booking reference: #<span id="booking-id"></span></p>
-            <br>
-        </div>
+        @if (ViewBag.BookingInfo != null)
+        {
+            <div style="text-align: center;">
+                <img src="~/images/confirm.svg" id="booking-svg">
+                <h3>Tak for din booking!</h3>
+                <p>Booking reference: #<span>@ViewBag.BookingInfo.ID</span></p>
+                <br>
+            </div>
 
 
-        <div id="form-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Fornavn</label>
-                                <input type="text" id="booking-first-name" class="form-control" disabled>
+            <div id="form-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Fornavn</label>
+                                    <input type="text" class="form-control" disabled value="@ViewBag.BookingInfo.FirstName">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Efternavn</label>
+                                    <input type="text" id="booking-last-name" class="form-control" disabled
+                                        value="@ViewBag.BookingInfo.LastName">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Efternavn</label>
-                                <input type="text" id="booking-last-name" class="form-control" disabled>
+
+                        <div class="form-group">
+                            @{
+                                var time = ViewBag.BookingInfo.Time.ToString("yyyy-MM-dd HH:mm",
+                                System.Globalization.CultureInfo.InvariantCulture);
+                            }
+                            <label class="form-label">Tidspunkt</label>
+                            <input type="datetime-local" id="booking-time" class="form-control" disabled value="@time">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Telefonnummer</label>
+                                    <input type="tel" id="booking-phone" class="form-control" disabled
+                                        value="@ViewBag.BookingInfo.Phone">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="email" id="booking-email" class="form-control" disabled
+                                        value="@ViewBag.BookingInfo.Email">
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Tidspunkt</label>
-                        <input type="datetime-local" id="booking-time" class="form-control" disabled>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Telefonnummer</label>
-                                <input type="tel" id="booking-phone" class="form-control" disabled>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">E-mail</label>
-                                <input type="email" id="booking-email" class="form-control" disabled>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="booking-equipment" class="col-md-6">
-                    <div id="booking-equipment-inner" class="form-group">
-                        <label class="form-label">Udstyr</label>
-                        <div class="form-control book-equipment">
-                            <div id="booking-items">
+                    <div id="booking-equipment" class="col-md-6">
+                        <div id="booking-equipment-inner" class="form-group">
+                            <label class="form-label">Udstyr</label>
+                            <div class="form-control book-equipment">
+                                <div id="booking-items">
+                                    @if (ViewBag.BookingInfo.Equipment.Equipment != null)
+                                    {
+                                        @foreach (var item in ViewBag.BookingInfo.Equipment.Equipment)
+                                        {
+                                            <label>@item.Name</label>
+                                        }
+                                    }
+                                    @if (ViewBag.BookingInfo.Equipment.Suits != null)
+                                    {
+                                        @foreach (var suit in ViewBag.BookingInfo.Equipment.Suits)
+                                        {
+                                            <label>@suit.Name</label>
+                                        }
+                                    }
+                                    @if (ViewBag.BookingInfo.Equipment.Addons != null)
+                                    {
+                                        @foreach (var addon in ViewBag.BookingInfo.Equipment.Addons)
+                                        {
+                                            <label>@addon.Name</label>
+                                        }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <button onclick="modalClose()">Close</button>
+            <button onclick="modalClose()">Close</button>
+        }
     </div>
 </div>

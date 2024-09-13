@@ -384,6 +384,10 @@ nav a:hover hr {
   align-items: center;
 }
 
+.show  {
+  display: block !important;
+}
+
 /* Add padding and center-align text to the container */
 #modal-container {
   background-color: #fefefe;

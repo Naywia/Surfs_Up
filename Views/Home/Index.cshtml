@@ -1,7 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Hafla og burger emporium";
-}
-@model DetailModel
+﻿@model DetailModel
 
 @{
     @* <partial name="practical_info.cshtml" /> *@
@@ -9,5 +6,5 @@
 
     Html.RenderPartial("partials/equipment.cshtml", Model);
 
-    Html.RenderPartial("partials/book.cshtml", new BookFormModel());
+    Html.RenderPartial("partials/book.cshtml", new BookingModel());
 }

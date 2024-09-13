@@ -1,9 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-
-function goTo(id) {
+﻿function goTo(id) {
   let destination = document.querySelector(id);
   let yCoord = destination.offsetTop - 80;
   window.scrollTo({
@@ -52,7 +47,7 @@ function updateCartItems() {
 
       if (data.addons && data.addons.length > 0) {
         data.addons.forEach(function (item) {
-          $('#cart-items').append('<label>' + item.name +'</label><br>');
+          $('#cart-items').append('<label>' + item.name + '</label><br>');
         });
       }
     },
@@ -63,15 +58,15 @@ function updateCartItems() {
 }
 
 function limitTime(date) {
-  let currTime  = `${date}`.split("T")[1].split(":");
-  let hour      = parseInt(currTime[0]);
-  let minute    = parseInt(currTime[1]);
+  let currTime = `${date}`.split("T")[1].split(":");
+  let hour = parseInt(currTime[0]);
+  let minute = parseInt(currTime[1]);
 
-  let rounded   = Math.round(((hour * 60) + minute) / 15) * 15;
-  let roundHour = ''+Math.floor(rounded / 60);
-  let roundMin  = ''+rounded%60;
+  let rounded = Math.round(((hour * 60) + minute) / 15) * 15;
+  let roundHour = '' + Math.floor(rounded / 60);
+  let roundMin = '' + rounded % 60;
 
-  let result = `${roundHour}:${roundMin.padStart(2, '0')}`;  
+  let result = `${roundHour}:${roundMin.padStart(2, '0')}`;
   return `${date}`.replace(`${currTime[0]}:${currTime[1]}`, result);
 }
 
@@ -96,64 +91,10 @@ $(document).ready(function () {
 // Get the modal
 var modal = $('#booking-confirmation');
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modalClose();
-  }
-}
-
-function submitBooking() {
-  $.ajax({
-    url: '/Book/AddBooking',
-    type: 'POST',
-    data: {
-      firstName: $("#FirstName").val(),
-      lastName: $("#LastName").val(),
-      time: $("#Time").val(),
-      phone: $("#Phone").val(),
-      email: $("#Email").val()
-    },
-    success: function (response) {
-      if (response.message === "Booking added!") {
-        booking = response.booking;
-        cart = booking.equipment;
-
-        $("#booking-id").html(booking.id);
-        $("#booking-first-name").val(booking.firstName);
-        $("#booking-last-name").val(booking.lastName);
-        $("#booking-time").val(booking.time);
-        $("#booking-phone").val(booking.phone);
-        $("#booking-email").val(booking.email);
-       
-        
-        if (cart.equipment && cart.equipment.length > 0) {
-          cart.equipment.forEach(function (item) {
-            $('#booking-items').append('<label>' + item.name +'</label><br>');
-          });
-        }
-  
-        if (cart.suits && cart.suits.length > 0) {
-          cart.suits.forEach(function (item) {
-            $('#booking-items').append('<label>' + item.name +'</label><br>');
-          });
-        }
-  
-        if (cart.addons && cart.addons.length > 0) {
-          cart.addons.forEach(function (item) {
-            $('#booking-items').append('<label>' + item.name +'</label><br>');
-          });
-        }
-
-        modal.css("display", "block");
-      }
-    },
-    error: function () {
-      alert('Din booking fejlede');
-    }
-  });
-}
+$(modal).on("click", function () {
+  modalClose();
+});
 
 function modalClose() {
-  modal.css("display", "none");
+  modal.removeClass("show")
 }
