@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SurfsUp.Models;

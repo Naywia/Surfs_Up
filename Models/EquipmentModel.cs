@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace SurfsUp.Models;
 
 public class EquipmentModel

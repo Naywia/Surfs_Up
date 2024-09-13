@@ -1,7 +1,4 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http; // For ISession
-using Newtonsoft.Json; // For JSON serialization
 using SurfsUp.Models;
 
 namespace SurfsUp.Controllers;
