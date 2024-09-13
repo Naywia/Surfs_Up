@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SurfsUp.Models;
+using SurfsUp.Extensions;
 
 namespace SurfsUp.Controllers;
 

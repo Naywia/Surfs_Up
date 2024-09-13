@@ -2,6 +2,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SurfsUp.Models;
 
+namespace SurfsUp.Extensions;
+
 public static class SessionExtensions
 {
     public static void SetObject(this ISession session, string key, object value)
