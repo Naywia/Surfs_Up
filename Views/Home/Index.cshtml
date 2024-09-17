@@ -22,14 +22,7 @@
 
     if (shouldScroll) {
         window.addEventListener('load', function() {
-            let destination = document.querySelector("#book");
-            if (destination) {
-                let yCoord = destination.offsetTop - 80;
-                window.scrollTo({
-                    top: yCoord,
-                    behavior: "smooth"
-                });
-            }
+            goTo("#book");
         });
     }
 </script>
