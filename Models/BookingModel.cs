@@ -20,7 +20,7 @@ public class BookingModel
 
     [Required(ErrorMessage="Telefonnummer mangler*")]
     [Display(Name = "Telefonnummer")]
-    public long Phone {get; set;}
+    public long? Phone {get; set;}
 
     [Required(ErrorMessage="E-mail mangler*")]
     [Display(Name = "E-mail")]
