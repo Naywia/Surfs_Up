@@ -1,3 +1,5 @@
+using SurfsUp.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +13,9 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true; // Make the session cookie HTTP-only
     options.Cookie.IsEssential = true; // Make the session cookie essential
 });
+
+var connectionString = builder.Configuration.GetConnectionString("surfsup") ?? "Data Source=surfsup.db";
+builder.Services.AddSqlite<DataContext>(connectionString);
 
 var app = builder.Build();
 
