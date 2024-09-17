@@ -8,3 +8,28 @@
 
     Html.RenderPartial("partials/book.cshtml", new BookingModel());
 }
+
+
+<script type="text/javascript">
+    var shouldScroll = false;
+
+    @if (ViewBag.Booking != null && ViewBag.Booking == "true")
+    {
+        <text>
+            shouldScroll = true;
+        </text>
+    }
+
+    if (shouldScroll) {
+        window.addEventListener('load', function() {
+            let destination = document.querySelector("#book");
+            if (destination) {
+                let yCoord = destination.offsetTop - 80;
+                window.scrollTo({
+                    top: yCoord,
+                    behavior: "smooth"
+                });
+            }
+        });
+    }
+</script>

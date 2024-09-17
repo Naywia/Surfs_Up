@@ -38,7 +38,16 @@
                             <label asp-for="FirstName" class="form-label"></label>
                             <input type="text" asp-for="FirstName" class="form-control"
                                 placeholder="Skriv dit fornavn her">
-                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                            <span class="text-danger">
+                                @if (ViewBag.ValidationErrors != null &&
+                                ViewBag.ValidationErrors.ContainsKey("FirstName"))
+                                {
+                                    @foreach (var error in ViewBag.ValidationErrors["FirstName"])
+                                    {
+                                        <div>@error</div>
+                                    }
+                                }
+                            </span>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -46,7 +55,16 @@
                             <label asp-for="LastName" class="form-label"></label>
                             <input type="text" asp-for="LastName" class="form-control"
                                 placeholder="Skriv dit efternavn her">
-                            <span asp-validation-for="LastName" class="text-danger"></span>
+                            <span class="text-danger">
+                                @if (ViewBag.ValidationErrors != null &&
+                                ViewBag.ValidationErrors.ContainsKey("LastName"))
+                                {
+                                    @foreach (var error in ViewBag.ValidationErrors["LastName"])
+                                    {
+                                        <div>@error</div>
+                                    }
+                                }
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -54,7 +72,16 @@
                 <div class="form-group">
                     <label asp-for="Time" class="form-label"></label>
                     <input type="datetime-local" asp-for="Time" class="form-control" id="date-form">
-                    <span asp-validation-for="Time" class="text-danger"></span>
+                    <span class="text-danger">
+                        @if (ViewBag.ValidationErrors != null &&
+                        ViewBag.ValidationErrors.ContainsKey("Time"))
+                        {
+                            @foreach (var error in ViewBag.ValidationErrors["Time"])
+                            {
+                                <div>@error</div>
+                            }
+                        }
+                    </span>
                 </div>
 
                 <div class="row">
@@ -63,14 +90,32 @@
                             <label asp-for="Phone" class="form-label"></label>
                             <input type="tel" asp-for="Phone" class="form-control"
                                 placeholder="Skriv dit telefonnummer her" pattern="[0-9]{8}">
-                            <span asp-validation-for="Phone" class="text-danger"></span>
+                            <span class="text-danger">
+                                @if (ViewBag.ValidationErrors != null &&
+                                ViewBag.ValidationErrors.ContainsKey("Phone"))
+                                {
+                                    @foreach (var error in ViewBag.ValidationErrors["Phone"])
+                                    {
+                                        <div>@error</div>
+                                    }
+                                }
+                            </span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="Email" class="form-label"></label>
                             <input type="email" asp-for="Email" class="form-control" placeholder="Skriv din e-mail her">
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <span class="text-danger">
+                                @if (ViewBag.ValidationErrors != null &&
+                                ViewBag.ValidationErrors.ContainsKey("Email"))
+                                {
+                                    @foreach (var error in ViewBag.ValidationErrors["Email"])
+                                    {
+                                        <div>@error</div>
+                                    }
+                                }
+                            </span>
                         </div>
                     </div>
                 </div>

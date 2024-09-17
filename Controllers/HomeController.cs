@@ -26,18 +26,31 @@ public class HomeController : Controller
     {
         this.ViewData["WD"] = WD;
 
-        if (TempData["ShowModal"] != null && TempData["ShowModal"].ToString() == "true")
-    {
-        // Retrieve booking information from TempData
-        var bookingInfoJson = TempData["BookingInfo"] as string;
-        if (!string.IsNullOrEmpty(bookingInfoJson))
+        Dictionary<string, List<string>> validationErrors = null;
+
+        if (TempData["ValidationErrors"] != null)
         {
-            // Deserialize the booking information back into a BookFormModel object
-            var bookingInfo = JsonConvert.DeserializeObject<BookingModel>(bookingInfoJson);
-            ViewBag.BookingInfo = bookingInfo;
-            ViewBag.ShowModal = "show"; // Flag to display the modal
+            validationErrors = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(TempData["ValidationErrors"].ToString());
         }
-    }
+
+        ViewBag.ValidationErrors = validationErrors;
+
+        if (TempData["ShowModal"] != null && TempData["ShowModal"].ToString() == "true")
+        {
+            // Retrieve booking information from TempData
+            var bookingInfoJson = TempData["BookingInfo"] as string;
+            if (!string.IsNullOrEmpty(bookingInfoJson))
+            {
+                // Deserialize the booking information back into a BookFormModel object
+                var bookingInfo = JsonConvert.DeserializeObject<BookingModel>(bookingInfoJson);
+                ViewBag.BookingInfo = bookingInfo;
+                ViewBag.ShowModal = "show"; // Flag to display the modal
+            }
+        }
+
+        if (TempData["Booking"] != null && TempData["Booking"].ToString() == "true") {
+            ViewBag.Booking = "true";
+        }
 
         cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel() { Equipment = new List<EquipmentModel>(), Suits = new List<SuitModel>(), Addons = new List<AddonModel>() };
         DetailModel model = new()

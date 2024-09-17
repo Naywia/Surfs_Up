@@ -4,7 +4,7 @@ namespace SurfsUp.Models;
 
 public class BookingModel
 {
-    public string ID {get; set;}
+    public string? ID {get; set;}
     
     [Required(ErrorMessage="Fornavn mangler*")]
     [Display(Name = "Fornavn")]
@@ -26,7 +26,6 @@ public class BookingModel
     [Display(Name = "E-mail")]
     public string Email {get; set;}
 
-    [Required]
     [Display(Name = "Udstyr")]
-    public DetailModel Equipment {get; set;}
+    public DetailModel? Equipment {get; set;}
 }
