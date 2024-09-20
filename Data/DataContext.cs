@@ -5,15 +5,14 @@ namespace SurfsUp.Data
 {
     class DataContext : DbContext
     {
-        public static DbSet<AddonModel> Addons { get; set; }
-        public static DbSet<BookingModel> Bookings { get; set; }
-        public static DbSet<EquipmentModel> Equipments { get; set; }
-        public static DbSet<SuitModel> Suits { get; set; }
+        public DbSet<AddonModel> Addons { get; set; } = null!;
+        public DbSet<BookingModel> Bookings { get; set; } = null!;
+        public DbSet<EquipmentModel> Equipments { get; set; } = null!;
+        public DbSet<SuitModel> Suits { get; set; } = null!;
 
-        public DataContext()
-        {}
-
-        public DataContext(DbContextOptions options) : base(options)
-        {}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("DataSource=surfsup.db;Cache=Shared;");
+        }
     }
 }
