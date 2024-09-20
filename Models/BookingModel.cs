@@ -7,7 +7,7 @@ namespace SurfsUp.Models
     public class BookingModel
     {
         [Key]
-        public string ID { get; set; }
+        public string? ID { get; set; }
 
         [Required(ErrorMessage = "Fornavn mangler*")]
         [Display(Name = "Fornavn")]
@@ -29,11 +29,10 @@ namespace SurfsUp.Models
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        //[Display(Name = "Udstyr")]
-        public List<EquipmentModel> Equipment { get; set; } = null!;
-        public List<SuitModel> Suits { get; set; } = null!;
-        public List<AddonModel> Addons { get; set; } = null!;
-
+        [Display(Name = "Udstyr")]
+        public List<EquipmentModel>? Equipment { get; set; }
+        public List<SuitModel>? Suits { get; set; }
+        public List<AddonModel>? Addons { get; set; }
 
         public DetailModel GetCart()
         {

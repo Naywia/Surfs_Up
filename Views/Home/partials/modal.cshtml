@@ -60,23 +60,23 @@
                             <label class="form-label">Udstyr</label>
                             <div class="form-control book-equipment">
                                 <div id="booking-items">
-                                    @if (ViewBag.BookingInfo.Equipment.Equipment != null)
+                                    @if (ViewBag.BookingInfo.Equipment != null)
                                     {
-                                        @foreach (var item in ViewBag.BookingInfo.Equipment.Equipment)
+                                        @foreach (var item in ViewBag.BookingInfo.Equipment)
                                         {
                                             <label>@item.Name</label>
                                         }
                                     }
-                                    @if (ViewBag.BookingInfo.Equipment.Suits != null)
+                                    @if (ViewBag.BookingInfo.Suits != null)
                                     {
-                                        @foreach (var suit in ViewBag.BookingInfo.Equipment.Suits)
+                                        @foreach (var suit in ViewBag.BookingInfo.Suits)
                                         {
                                             <label>@suit.Name</label>
                                         }
                                     }
-                                    @if (ViewBag.BookingInfo.Equipment.Addons != null)
+                                    @if (ViewBag.BookingInfo.Addons != null)
                                     {
-                                        @foreach (var addon in ViewBag.BookingInfo.Equipment.Addons)
+                                        @foreach (var addon in ViewBag.BookingInfo.Addons)
                                         {
                                             <label>@addon.Name</label>
                                         }

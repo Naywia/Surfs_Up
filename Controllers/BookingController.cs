@@ -13,11 +13,9 @@ public class BookingController : Controller
     {
         latestId ??= _latestId;
 
-        int idH, idL;
         string[] idArr = latestId.Split('-');
-
-        idH = int.Parse(idArr[0], NumberStyles.HexNumber);
-        idL = int.Parse(idArr[1], NumberStyles.HexNumber);
+        int idH = int.Parse(idArr[0], NumberStyles.HexNumber);
+        int idL = int.Parse(idArr[1], NumberStyles.HexNumber);
 
         if (idL >= 65535)   { idH++; } // 65.535 == FFFF
         else                { idL++; }
