@@ -16,12 +16,12 @@
     @if (ViewBag.Booking != null && ViewBag.Booking == "true")
     {
         <text>
-            shouldScroll = true;
+                shouldScroll = true;
         </text>
     }
 
     if (shouldScroll) {
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             goTo("#book");
         });
     }
