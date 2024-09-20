@@ -52,7 +52,7 @@ public class HomeController : Controller
             ViewBag.Booking = "true";
         }
 
-        cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel() { Equipment = new List<EquipmentModel>(), Suits = new List<SuitModel>(), Addons = new List<AddonModel>() };
+        cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel();
         DetailModel model = new()
         {
             Equipment = equipment,

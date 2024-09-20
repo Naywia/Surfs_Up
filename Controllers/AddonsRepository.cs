@@ -45,6 +45,9 @@ namespace SurfsUp.Controllers
       if (TryFindAddon(id, out var addon))
       {
         //DataContext.Addons.Remove(addon);
+        using DataContext dc = new();
+        dc.Remove(addon);
+        dc.SaveChanges();        
         _addons.Remove(addon);
       }
       else
@@ -53,10 +56,9 @@ namespace SurfsUp.Controllers
 
     private static bool TryFindAddon(int id, out AddonModel addon)
     {
-      //addon = DataContext.Addons.Find(id);
-      //return addon == null;
-      addon = null;
-      return false;
+      using DataContext dc = new();
+      addon = dc.Addons.Find(id);
+      return addon == null;
     }
   }
 }

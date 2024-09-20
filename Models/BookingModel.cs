@@ -29,7 +29,27 @@ namespace SurfsUp.Models
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Display(Name = "Udstyr")]
-        public DetailModel? Equipment { get; set; }
+        //[Display(Name = "Udstyr")]
+        public List<EquipmentModel> Equipment { get; set; } = null!;
+        public List<SuitModel> Suits { get; set; } = null!;
+        public List<AddonModel> Addons { get; set; } = null!;
+
+
+        public DetailModel GetCart()
+        {
+            return new()
+            {
+                Equipment = Equipment,
+                Suits = Suits,
+                Addons = Addons
+            };
+        }
+
+        public void SetCart(DetailModel dm)
+        {
+            Equipment = dm.Equipment;
+            Suits = dm.Suits;
+            Addons = dm.Addons;
+        }
     }
 }

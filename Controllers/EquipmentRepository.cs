@@ -10,8 +10,7 @@ namespace SurfsUp.Controllers
     static EquipmentRepository()
     {
       using DataContext dc = new();
-      dc.Equipments.AddRange(_equipment);
-      dc.SaveChanges();
+      _equipment = [.. dc.Equipments];
     }
 
     public static List<EquipmentModel> GetEquipment() => _equipment;

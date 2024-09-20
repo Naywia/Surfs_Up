@@ -45,12 +45,7 @@ public class BookingController : Controller
         }
 
         booking.ID = IDMaker();
-        booking.Equipment = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel()
-        {
-            Equipment = new List<EquipmentModel>(),
-            Suits = new List<SuitModel>(),
-            Addons = new List<AddonModel>()
-        };
+        booking.SetCart(HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel());
         BookingRepository.Add(booking);
 
         TempData["BookingInfo"] = JsonConvert.SerializeObject(booking); // Convert the object to JSON
