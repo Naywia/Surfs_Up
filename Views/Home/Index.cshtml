@@ -3,9 +3,7 @@
 @{
     @* <partial name="practical_info.cshtml" /> *@
     Html.RenderPartial("partials/practical_info.cshtml");
-
     Html.RenderPartial("partials/equipment.cshtml", Model);
-
     Html.RenderPartial("partials/book.cshtml", new BookingModel());
 }
 
