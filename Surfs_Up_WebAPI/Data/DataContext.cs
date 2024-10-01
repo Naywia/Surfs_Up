@@ -14,5 +14,26 @@ namespace Surfs_Up_WebAPI.Data
         {
             optionsBuilder.UseSqlite("DataSource=surfsup.db;Cache=Shared;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // Fluent API for many-to-many relationship
+        modelBuilder.Entity<BookingModel>()
+            .HasMany(b => b.Addons)
+            .WithMany(a => a.Bookings)
+            .UsingEntity(join => join.ToTable("BookingAddon"));
+
+        modelBuilder.Entity<BookingModel>()
+            .HasMany(b => b.Suits)
+            .WithMany(s => s.Bookings)
+            .UsingEntity(join => join.ToTable("BookingSuit"));
+
+        modelBuilder.Entity<BookingModel>()
+            .HasMany(b => b.Equipment)
+            .WithMany(e => e.Bookings)
+            .UsingEntity(join => join.ToTable("BookingEquipment"));
+    }
     }
 }

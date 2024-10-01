@@ -12,5 +12,6 @@ namespace Surfs_Up_WebAPI.Models
         public double Price { get; set; }
         public string Equipment { get; set; }
         public string ImagePath { get; set; }
+        public List<BookingModel>? Bookings { get; set; }
     }
 }

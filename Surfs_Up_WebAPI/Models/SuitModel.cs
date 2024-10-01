@@ -9,5 +9,6 @@ namespace Surfs_Up_WebAPI.Models
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public double Price { get; set; }
+        public List<BookingModel>? Bookings { get; set; }
     }
 }
