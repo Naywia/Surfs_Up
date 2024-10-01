@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,12 +16,13 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true; // Make the session cookie HTTP-only
     options.Cookie.IsEssential = true; // Make the session cookie essential
 });
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new NullReferenceException("Øv bøv :((");
+builder.Services.AddDbContext<DataContext>();
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<DataContext>();
 builder.Services.AddRazorPages();
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new NullReferenceException("Øv bøv :((");
-//builder.Services.AddDbContext<DataContext>(options =>
-//    options.UseSqlite(connectionString));
 
 var app = builder.Build();
 
