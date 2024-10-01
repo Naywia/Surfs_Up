@@ -1,14 +1,8 @@
 ﻿@model DetailModel
 
-@{
-    @* <partial name="practical_info.cshtml" /> *@
-    Html.RenderPartial("partials/practical_info.cshtml");
-
-    Html.RenderPartial("partials/equipment.cshtml", Model);
-
-    Html.RenderPartial("partials/book.cshtml", new BookingModel());
-}
-
+<partial name="partials/practical_info.cshtml"/>
+<partial name="partials/equipment.cshtml" model="@Model"/>
+<partial name="partials/book.cshtml" model="@new BookingModel();"/>
 
 <script type="text/javascript">
     var shouldScroll = false;

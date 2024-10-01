@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Models;
 
 namespace SurfsUp.Data
 {
-    class DataContext : DbContext
+    class DataContext : IdentityDbContext
     {
         public DbSet<AddonModel> Addons { get; set; } = null!;
         public DbSet<BookingModel> Bookings { get; set; } = null!;

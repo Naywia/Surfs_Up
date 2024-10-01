@@ -1,3 +1,13 @@
 ﻿@{
-    Layout = "_Layout";
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    switch (controller)
+    {
+        case "Home":
+            Layout = "_Layout";
+            break;
+        
+        case "Account":
+            Layout = "_SwagLayout";
+            break;
+    }
 }

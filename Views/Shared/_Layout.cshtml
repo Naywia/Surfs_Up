@@ -1,5 +1,5 @@
 @using SurfsUp.Extensions
-@{         
+@{
     DayData[] data;
     if (ViewData.TryGetValue("WD", out var mads)) {
         var wd = mads == null ? throw new NullReferenceException("WD wasn't set to anything...") : (WeatherData)mads;
@@ -114,6 +114,7 @@
                     </a>
                 </div>
             </div>
+            <partial name="login"/>
             @* <a onclick="goTo('#instructors')">Instruktører</a> *@
             <a onclick="goTo('#book')" id="book-btn">
                 <div>
