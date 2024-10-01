@@ -1,0 +1,6 @@
+@Surfs_Up_WebAPI_HostAddress = http://localhost:5073
+
+GET {{Surfs_Up_WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
