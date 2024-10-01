@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage;
 using Surfs_Up_WebAPI.Data;
 using Surfs_Up_WebAPI.Models;
 
@@ -10,12 +9,12 @@ namespace Surfs_Up_WebAPI.Controllers
     public class EquipmentController : ControllerBase
     {
         [HttpPost(Name = "CreateEquipment")]
-        public IActionResult Create(EquipmentModel equipment)
+        public IActionResult Create(string name, double length, double width, double thickness, double volume, string type, double price, string equipment, string imagePath)
         {
             using DataContext dc = new();
             try
             {
-                dc.Equipments.Add(equipment);
+                dc.Equipment.Add(new EquipmentModel() { Name = name, Length = length, Width = width, Thickness = thickness, Volume = volume, Type = type, Price = price, Equipment = equipment, ImagePath = imagePath });
                 dc.SaveChanges();
                 return Created();
             }
@@ -29,7 +28,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult GetAll()
         {
             using DataContext dc = new();
-            List<EquipmentModel> equipments = [.. dc.Equipments];
+            List<EquipmentModel> equipments = [.. dc.Equipment];
 
             if (equipments != null && equipments.Count > 0)
             {
@@ -45,7 +44,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult Get(int id)
         {
             using DataContext dc = new();
-            EquipmentModel equipment = dc.Equipments.Find(id);
+            EquipmentModel equipment = dc.Equipment.Find(id);
 
             if (equipment != null)
             {

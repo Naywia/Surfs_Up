@@ -10,12 +10,12 @@ namespace Surfs_Up_WebAPI.Controllers
     public class AddonController : ControllerBase
     {
         [HttpPost(Name = "CreateAddon")]
-        public IActionResult Create(AddonModel addon)
+        public IActionResult Create(string name, string type, string description, string imagePath, double price)
         {
             using DataContext dc = new();
             try
             {
-                dc.Addons.Add(addon);
+                dc.Addon.Add(new AddonModel() {Name = name, Type = type, Description = description, ImagePath = imagePath, Price = price});
                 dc.SaveChanges();
                 return Created();
             }
@@ -29,7 +29,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult GetAll()
         {
             using DataContext dc = new();
-            List<AddonModel> addons = [.. dc.Addons];
+            List<AddonModel> addons = [.. dc.Addon];
 
             if (addons != null && addons.Count > 0)
             {
@@ -45,7 +45,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult Get(int id)
         {
             using DataContext dc = new();
-            AddonModel addon = dc.Addons.Find(id);
+            AddonModel addon = dc.Addon.Find(id);
 
             if (addon != null)
             {

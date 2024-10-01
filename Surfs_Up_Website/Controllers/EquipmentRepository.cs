@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using SurfsUp.Data;
 using SurfsUp.Models;
 
@@ -5,12 +6,22 @@ namespace SurfsUp.Controllers
 {
   public static class EquipmentRepository
   {
+    private static readonly string api_url = "http://localhost:5073/Equipment";
     private static readonly List<EquipmentModel> _equipment = [];
 
     static EquipmentRepository()
-    {
-      using DataContext dc = new();
-      _equipment = [.. dc.Equipments];
+    {      
+      using HttpClient client = new();
+      var response = client.GetAsync(api_url).Result; 
+      if (response.IsSuccessStatusCode)
+      {
+        var res = response.Content.ReadAsStringAsync().Result;
+        _equipment = JsonConvert.DeserializeObject<List<EquipmentModel>>(res);
+      }
+      else
+      {
+        throw new HttpRequestException($"Couldn't fetch the data... {response.StatusCode}");
+      }
     }
 
     public static List<EquipmentModel> GetEquipment() => _equipment;

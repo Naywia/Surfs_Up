@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using Newtonsoft.Json;
 using SurfsUp.Data;
 using SurfsUp.Models;
 
@@ -5,22 +7,57 @@ namespace SurfsUp.Controllers
 {
   public static class AddonsRepository
   {
-    private static readonly List<AddonModel> _addons = [];
+    private static readonly string api_url = "http://localhost:5073/Addon";
+
+    private static List<AddonModel> _addons = [];
 
     static AddonsRepository()
     {
-      using DataContext dc = new();
-      _addons = [.. dc.Addons];
+      GetAddonsFromAPI();
+    }
+
+    public static void GetAddonsFromAPI()
+    {
+      using HttpClient client = new();
+      var response = client.GetAsync(api_url).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var res = response.Content.ReadAsStringAsync().Result;
+        _addons = JsonConvert.DeserializeObject<List<AddonModel>>(res) ?? [];
+      }
+      else
+      {
+        throw new HttpRequestException($"Couldn't fetch the data... {response.StatusCode}");
+      }
     }
 
     public static List<AddonModel> GetAddons() => _addons;
 
     public static void Create(AddonModel addon)
     {
-      using DataContext dc = new();
-      dc.Addons.Add(addon);
-      dc.SaveChanges();
-      _addons.Add(addon);
+      using HttpClient client = new();
+
+      // Build the request parameters as form-urlencoded, which matches typical POST API expectations
+      var parameters = new Dictionary<string, string>
+      {
+        { "name", addon.Name },
+        { "type", addon.Type },
+        { "description", addon.Description },
+        { "imagePath", addon.ImagePath },
+        { "price", addon.Price.ToString() }
+      };
+
+      var content = new FormUrlEncodedContent(parameters); // Use form URL encoding for the body
+
+      var response = client.PostAsync(api_url, content).Result; // Pass the content in the POST request
+      if (response.IsSuccessStatusCode)
+      {
+        GetAddonsFromAPI();
+      }
+      else
+      {
+        throw new HttpRequestException($"Couldn't upload the data... {response.StatusCode}");
+      }
     }
 
     public static void Create(string name, string type, double price, string? imagePath = null, string? description = null)
@@ -34,10 +71,7 @@ namespace SurfsUp.Controllers
         ImagePath = imagePath ?? string.Empty
       };
 
-      using DataContext dc = new();
-      dc.Addons.Add(addon);
-      dc.SaveChanges();
-      _addons.Add(addon);
+      Create(addon);
     }
 
     public static void Remove(int id)
@@ -47,7 +81,7 @@ namespace SurfsUp.Controllers
         //DataContext.Addons.Remove(addon);
         using DataContext dc = new();
         dc.Remove(addon);
-        dc.SaveChanges();        
+        dc.SaveChanges();
         _addons.Remove(addon);
       }
       else

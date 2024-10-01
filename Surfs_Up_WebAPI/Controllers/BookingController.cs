@@ -15,7 +15,7 @@ namespace Surfs_Up_WebAPI.Controllers
             using DataContext dc = new();
             try
             {
-                dc.Bookings.Add(booking);
+                dc.Booking.Add(booking);
                 dc.SaveChanges();
                 return Created();
             }
@@ -29,7 +29,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult GetAll()
         {
             using DataContext dc = new();
-            List<BookingModel> bookings = [.. dc.Bookings];
+            List<BookingModel> bookings = [.. dc.Booking];
 
             if (bookings != null && bookings.Count > 0)
             {
@@ -45,7 +45,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult Get(int id)
         {
             using DataContext dc = new();
-            BookingModel booking = dc.Bookings.Find(id);
+            BookingModel booking = dc.Booking.Find(id);
 
             if (booking != null)
             {

@@ -10,12 +10,12 @@ namespace Surfs_Up_WebAPI.Controllers
     public class SuitController : ControllerBase
     {
         [HttpPost(Name = "CreateSuit")]
-        public IActionResult Create(SuitModel suit)
+        public IActionResult Create(string name, string sizes, string type, string description, string imagePath, double price)
         {
             using DataContext dc = new();
             try
             {
-                dc.Suits.Add(suit);
+                dc.Suit.Add(new SuitModel() { Name = name, Sizes = sizes, Type = type, Description = description, ImagePath = imagePath, Price = price });
                 dc.SaveChanges();
                 return Created();
             }
@@ -29,7 +29,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult GetAll()
         {
             using DataContext dc = new();
-            List<SuitModel> suits = [.. dc.Suits];
+            List<SuitModel> suits = [.. dc.Suit];
 
             if (suits != null && suits.Count > 0)
             {
@@ -45,7 +45,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult Get(int id)
         {
             using DataContext dc = new();
-            SuitModel suit = dc.Suits.Find(id);
+            SuitModel suit = dc.Suit.Find(id);
 
             if (suit != null)
             {

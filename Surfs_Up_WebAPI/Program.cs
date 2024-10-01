@@ -1,3 +1,6 @@
+using Surfs_Up_WebAPI.Controllers;
+using Surfs_Up_WebAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
