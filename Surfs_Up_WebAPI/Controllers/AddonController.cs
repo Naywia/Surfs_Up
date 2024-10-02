@@ -57,14 +57,14 @@ namespace Surfs_Up_WebAPI.Controllers
             }
         }
 
-        [HttpPut(Name = "UpdateAddon")]
-        public IActionResult Update(int id)
+        [HttpPut("{id}", Name = "UpdateAddon")]
+        public IActionResult Update()
         {
             throw new NotImplementedException();
         }
 
-        [HttpDelete(Name = "DeleteAddon")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{id}", Name = "DeleteAddon")]
+        public IActionResult Delete()
         {
             throw new NotImplementedException();
         }

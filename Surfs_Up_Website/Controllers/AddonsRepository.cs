@@ -76,16 +76,19 @@ namespace SurfsUp.Controllers
 
     public static void Remove(int id)
     {
-      if (TryFindAddon(id, out var addon))
+      using HttpClient client = new();
+
+      // Send the DELETE request
+      var response = client.DeleteAsync(api_url + "/" + id).Result;
+
+      if (response.IsSuccessStatusCode)
       {
-        //DataContext.Addons.Remove(addon);
-        using DataContext dc = new();
-        dc.Remove(addon);
-        dc.SaveChanges();
-        _addons.Remove(addon);
+        Console.WriteLine("Addon successfully deleted.");
       }
       else
-      { Console.WriteLine($"Addon with id {id} could not be found... whoops :'("); }
+      {
+        throw new HttpRequestException($"Couldn't delete the addon... {response.StatusCode}");
+      }
     }
 
     private static bool TryFindAddon(int id, out AddonModel addon)
