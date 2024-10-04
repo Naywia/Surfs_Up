@@ -1,5 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage;
 using Surfs_Up_WebAPI.Data;
 using Surfs_Up_WebAPI.Models;
 
@@ -9,13 +9,16 @@ namespace Surfs_Up_WebAPI.Controllers
     [Route("[controller]")]
     public class AddonController : ControllerBase
     {
+        #region Create
+
+        [Authorize(Roles = "Admin")]
         [HttpPost(Name = "CreateAddon")]
         public IActionResult Create(string name, string type, string description, string imagePath, double price)
         {
             using DataContext dc = new();
             try
             {
-                dc.Addon.Add(new AddonModel() {Name = name, Type = type, Description = description, ImagePath = imagePath, Price = price});
+                dc.Addon.Add(new AddonModel() { Name = name, Type = type, Description = description, ImagePath = imagePath, Price = price });
                 dc.SaveChanges();
                 return Created();
             }
@@ -24,6 +27,9 @@ namespace Surfs_Up_WebAPI.Controllers
                 return BadRequest();
             }
         }
+        #endregion
+
+        #region Read
 
         [HttpGet(Name = "GetAddons")]
         public IActionResult GetAll()
@@ -56,18 +62,25 @@ namespace Surfs_Up_WebAPI.Controllers
                 return NotFound();
             }
         }
+        #endregion
+
+        #region Update
 
         [HttpPut("{id}", Name = "UpdateAddon")]
         public IActionResult Update()
         {
             throw new NotImplementedException();
         }
+        #endregion
+
+        #region Delete
 
         [HttpDelete("{id}", Name = "DeleteAddon")]
         public IActionResult Delete()
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }
 

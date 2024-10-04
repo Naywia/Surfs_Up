@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage;
 using Surfs_Up_WebAPI.Data;
 using Surfs_Up_WebAPI.Models;
 
@@ -9,9 +8,38 @@ namespace Surfs_Up_WebAPI.Controllers
     [Route("[controller]")]
     public class BookingController : ControllerBase
     {
+        #region Create
+
         [HttpPost(Name = "CreateBooking")]
-        public IActionResult Create(BookingModel booking)
+        public IActionResult Create(string firstName, string lastName, DateTime pickupTime, long phone, string email) // , List<EquipmentModel>? equipment = null, List<SuitModel>? suits = null, List<AddonModel>? addons = null
         {
+            // if (equipment == null && suits == null && addons == null)
+            // {
+            //     return BadRequest();
+            // }
+
+            BookingModel booking = new()
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Time = pickupTime,
+                Phone = phone,
+                Email = email
+            };
+
+            // if (equipment != null)
+            // {
+            //     booking.Equipment = equipment;
+            // }
+            // if (suits != null)
+            // {
+            //     booking.Suits = suits;
+            // }
+            // if (addons != null)
+            // {
+            //     booking.Addons = addons;
+            // }
+
             using DataContext dc = new();
             try
             {
@@ -24,6 +52,9 @@ namespace Surfs_Up_WebAPI.Controllers
                 return BadRequest();
             }
         }
+        #endregion
+
+        #region Read
 
         [HttpGet(Name = "GetBookings")]
         public IActionResult GetAll()
@@ -56,19 +87,24 @@ namespace Surfs_Up_WebAPI.Controllers
                 return NotFound();
             }
         }
+        #endregion
+
+        #region Update
 
         [HttpPut(Name = "UpdateBooking")]
         public IActionResult Update(int id)
         {
             throw new NotImplementedException();
         }
+        #endregion
+
+        #region Delete
 
         [HttpDelete(Name = "DeleteBooking")]
         public IActionResult Delete(int id)
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }
-
-
