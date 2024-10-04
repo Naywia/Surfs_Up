@@ -1,4 +1,22 @@
 @{
     ViewData["title"] = "Login";
 }
-<h1>Hahahahahahahaha yipiiiiiiiii</h1>
+
+<h1>Login...</h1>
+<hr>
+<form class="login-form" method="post" novalidate="novalidate">
+    <label for="Input_Email">Email<br>
+        <input id="Input_Email" autocomplete="username" aria-required="true" placeholder="name@example.com" type="email">
+    </label>
+    <br>
+
+    <label for="Input_Password">Kode<br>
+        <input id="Input_Password" autocomplete="current-password" aria-required="true" placeholder="kode" type="password"> 
+    </label>
+    <br>
+
+    <label for="Input_Remember">Husk mig?<input id ="Input_Remember" type="checkbox">
+    </label>
+
+    <button id="Input_Submit" type="submit">Log ind</button>
+</form>

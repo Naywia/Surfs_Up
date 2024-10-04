@@ -400,3 +400,27 @@ nav a:hover hr {
 #booking-svg {
   width: 18%;
 }
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: Center;
+    line-height: 26px;
+}
+
+/* label {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    width: 400px;
+    line-height: 26px;
+    margin-bottom: 10px;
+} */
+
+#Input_Email, #Input_Password {
+    height: 2em;
+    margin-left: 0.75em;
+    width: 300px;
+}
