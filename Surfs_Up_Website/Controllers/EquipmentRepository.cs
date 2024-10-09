@@ -6,7 +6,7 @@ namespace SurfsUp.Controllers
 {
   public static class EquipmentRepository
   {
-    private static readonly string api_url = "http://localhost:5073/Equipment";
+    private static readonly string api_url = "https://localhost:7052/Equipment";
     private static readonly List<EquipmentModel> _equipment = [];
 
     static EquipmentRepository()

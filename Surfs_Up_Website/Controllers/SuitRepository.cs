@@ -1,16 +1,101 @@
+using System.Diagnostics;
+using Newtonsoft.Json;
+using SurfsUp.Data;
 using SurfsUp.Models;
 
-public static class SuitRepository
+namespace SurfsUp.Controllers
 {
-  private static List<SuitModel> _suits = new(){
-      new SuitModel { ID=1,  Name="O'Neill Epic 4/3mm Full Wetsuit", Sizes="S, M, L, XL", Type="Fuld våddragt", Description="Perfekt til koldere vandforhold, denne dragt giver fremragende varmeisolering og fleksibilitet med sin 4/3mm tykkelse.", ImagePath="/images/suits/suit_1.png"},
-      new SuitModel { ID=2,  Name="Rip Curl Dawn Patrol 3/2mm Steamer", Sizes="XS, S, M, L, XL", Type="Fuld våddragt", Description="En alsidig dragt, der kombinerer komfort og holdbarhed. Ideel til forår og efterår, hvor vandtemperaturen er moderat.", ImagePath="/images/suits/suit_2.png"},
-      new SuitModel { ID=3,  Name="Billabong Absolute 2mm Shorty Wetsuit", Sizes="S, M, L, XL", Type="Kort våddragt (Shorty)", Description="Denne kortærmede dragt er perfekt til sommermånederne og tilbyder god bevægelsesfrihed i varmere vand.", ImagePath="/images/suits/suit_3.png"},
-      new SuitModel { ID=4,  Name="Quiksilver Syncro 5/4/3mm Hooded Wetsuit", Sizes="M, L, XL, XXL", Type="Fuld våddragt med hætte", Description="Designet til de koldeste forhold. Med en hætte og ekstra tykkelse giver denne dragt maksimal beskyttelse mod kulden.", ImagePath="/images/suits/suit_4.png"},
-      new SuitModel { ID=5,  Name="Xcel Comp 3/2mm Full Wetsuit", Sizes="S, M, L, XL", Type="Fuld våddragt", Description="Kendt for sin fleksibilitet og komfort, denne dragt er ideel til dem, der ønsker en letvægtsløsning til mellemtempereret vand.", ImagePath="/images/suits/suit_5.png"},
-      new SuitModel { ID=6,  Name="Patagonia R2 Yulex 3.5/3mm Front-Zip Wetsuit", Sizes="XS, S, M, L", Type="Fuld våddragt", Description="Lavet af miljøvenligt Yulex-materiale, denne dragt giver fremragende varmeisolering og holdbarhed med ekstra fleksibilitet.", ImagePath="/images/suits/suit_6.png"},
-      new SuitModel { ID=7,  Name="Vissla 7 Seas 2/2mm Long Sleeve Spring Suit", Sizes="S, M, L", Type="Langærmet Spring Suit", Description="Denne dragt er perfekt til de varme forårsdage, hvor du stadig har brug for lidt beskyttelse, men ikke ønsker fuld dækning.", ImagePath="/images/suits/suit_7.png"},
-    };
+  public static class SuitRepository
+  {
+    private static readonly string api_url = "https://localhost:7052/Suit";
 
-  public static List<SuitModel> GetSuits() => _suits;
+    private static List<SuitModel> _addons = [];
+
+    static SuitRepository()
+    {
+      GetSuitsFromAPI();
+    }
+
+    public static void GetSuitsFromAPI()
+    {
+      using HttpClient client = new();
+      var response = client.GetAsync(api_url).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var res = response.Content.ReadAsStringAsync().Result;
+        _addons = JsonConvert.DeserializeObject<List<SuitModel>>(res) ?? [];
+      }
+      else
+      {
+        throw new HttpRequestException($"Couldn't fetch the data... {response.StatusCode}");
+      }
+    }
+
+    public static List<SuitModel> GetSuits() => _addons;
+
+    public static void Create(SuitModel suit)
+    {
+      using HttpClient client = new();
+
+      // Build the request parameters as form-urlencoded, which matches typical POST API expectations
+      var parameters = new Dictionary<string, string>
+      {
+        { "name", suit.Name },
+        { "type", suit.Type },
+        { "description", suit.Description },
+        { "imagePath", suit.ImagePath },
+        { "price", suit.Price.ToString() }
+      };
+
+      var content = new FormUrlEncodedContent(parameters); // Use form URL encoding for the body
+
+      var response = client.PostAsync(api_url, content).Result; // Pass the content in the POST request
+      if (response.IsSuccessStatusCode)
+      {
+        GetSuitsFromAPI();
+      }
+      else
+      {
+        throw new HttpRequestException($"Couldn't upload the data... {response.StatusCode}");
+      }
+    }
+
+    public static void Create(string name, string type, double price, string? imagePath = null, string? description = null)
+    {
+      SuitModel suit = new()
+      {
+        Name = name,
+        Type = type,
+        Price = price,
+        Description = description ?? string.Empty,
+        ImagePath = imagePath ?? string.Empty
+      };
+
+      Create(suit);
+    }
+
+    public static void Remove(int id)
+    {
+      using HttpClient client = new();
+
+      // Send the DELETE request
+      var response = client.DeleteAsync(api_url + "/" + id).Result;
+
+      if (response.IsSuccessStatusCode)
+      {
+        Console.WriteLine("Suit successfully deleted.");
+      }
+      else
+      {
+        throw new HttpRequestException($"Couldn't delete the suit... {response.StatusCode}");
+      }
+    }
+
+    private static bool TryFindSuit(int id, out SuitModel suit)
+    {
+      using DataContext dc = new();
+      suit = dc.Suits.Find(id);
+      return suit == null;
+    }
+  }
 }

@@ -11,39 +11,16 @@ namespace Surfs_Up_WebAPI.Controllers
         #region Create
 
         [HttpPost(Name = "CreateBooking")]
-        public IActionResult Create(string firstName, string lastName, DateTime pickupTime, long phone, string email) // , List<EquipmentModel>? equipment = null, List<SuitModel>? suits = null, List<AddonModel>? addons = null
+        public IActionResult Create(BookingRequestModel bookingRequest)
         {
-            // if (equipment == null && suits == null && addons == null)
-            // {
-            //     return BadRequest();
-            // }
+            if (bookingRequest.EquipmentIDs == null && bookingRequest.SuitIDs == null && bookingRequest.AddonIDs == null){
+                return BadRequest();
+            }
 
-            BookingModel booking = new()
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                Time = pickupTime,
-                Phone = phone,
-                Email = email
-            };
-
-            // if (equipment != null)
-            // {
-            //     booking.Equipment = equipment;
-            // }
-            // if (suits != null)
-            // {
-            //     booking.Suits = suits;
-            // }
-            // if (addons != null)
-            // {
-            //     booking.Addons = addons;
-            // }
-
-            using DataContext dc = new();
             try
             {
-                dc.Booking.Add(booking);
+                using DataContext dc = new();
+                dc.Booking.Add((BookingModel)bookingRequest);
                 dc.SaveChanges();
                 return Created();
             }
@@ -52,6 +29,7 @@ namespace Surfs_Up_WebAPI.Controllers
                 return BadRequest();
             }
         }
+
         #endregion
 
         #region Read

@@ -7,7 +7,7 @@ namespace SurfsUp.Controllers
 {
   public static class AddonsRepository
   {
-    private static readonly string api_url = "http://localhost:5073/Addon";
+    private static readonly string api_url = "https://localhost:7052/Addon";
 
     private static List<AddonModel> _addons = [];
 

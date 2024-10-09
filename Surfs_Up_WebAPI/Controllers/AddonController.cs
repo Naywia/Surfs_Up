@@ -67,7 +67,7 @@ namespace Surfs_Up_WebAPI.Controllers
         #region Update
 
         [HttpPut("{id}", Name = "UpdateAddon")]
-        public IActionResult Update()
+        public IActionResult Update(string id)
         {
             throw new NotImplementedException();
         }
@@ -76,7 +76,7 @@ namespace Surfs_Up_WebAPI.Controllers
         #region Delete
 
         [HttpDelete("{id}", Name = "DeleteAddon")]
-        public IActionResult Delete()
+        public IActionResult Delete(string id)
         {
             throw new NotImplementedException();
         }
