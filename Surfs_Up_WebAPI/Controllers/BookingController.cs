@@ -104,37 +104,47 @@ namespace Surfs_Up_WebAPI.Controllers
         [HttpGet(Name = "GetBookings")]
         public IActionResult GetAll()
         {
+            // Create a new instance of DataContext to interact with the database
             using DataContext dc = new();
-            
-            List<BookingModel> bookings = [.. dc.Booking
-                     .Include(b => b.Equipment)  // Include related Equipment
-                     .Include(b => b.Suits)      // Include related Suits
-                     .Include(b => b.Addons)];
 
+            // Retrieve a list of all bookings from the database, including related Equipment, Suits, and Addons
+            List<BookingModel> bookings = [.. dc.Booking
+                             .Include(b => b.Equipment) // Include related Equipment
+                             .Include(b => b.Suits)     // Include related Suits
+                             .Include(b => b.Addons)];  // Include related Addons
+
+            // Check if any bookings were retrieved
             if (bookings != null && bookings.Count > 0)
             {
+                // Return a 200 OK response with the list of bookings
                 return Ok(bookings);
             }
             else
             {
+                // Return a 404 Not Found response if no bookings are found
                 return NotFound();
             }
         }
 
         [HttpGet("{id}", Name = "GetBooking")]
-        public IActionResult Get(int id)
+        public IActionResult Get(string id)
         {
+            // Create a new instance of DataContext to interact with the database
             using DataContext dc = new();
-            BookingModel? booking = dc.Booking.Find(id);
 
-            if (booking != null)
+            // Retrieve booking by ID from the database, including related Equipment, Suits, and Addons
+            var booking = dc.Booking
+                            .Include(b => b.Addons)
+                            .Include(b => b.Suits)
+                            .Include(b => b.Equipment)
+                            .FirstOrDefault(b => b.ID == id.ToString());
+
+            if (booking == null)
             {
-                return Ok(booking);
+                return NotFound(); // Return 404 if the booking does not exist
             }
-            else
-            {
-                return NotFound();
-            }
+
+            return Ok(booking); // Return 200 with the booking details
         }
         #endregion
 
