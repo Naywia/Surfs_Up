@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Surfs_Up_WebAPI.Data;
 using Surfs_Up_WebAPI.Models;
@@ -9,24 +10,58 @@ namespace Surfs_Up_WebAPI.Controllers
     public class BookingController : ControllerBase
     {
         #region Create
+        private string _latestId = "0000-0000";
+        private string IDMaker(string? latestId = null)
+        {
+            // If the ID is null, assign it the latestID
+            latestId ??= _latestId;
+
+            string[] idArr = latestId.Split('-');
+            int idH = int.Parse(idArr[0], NumberStyles.HexNumber);
+            int idL = int.Parse(idArr[1], NumberStyles.HexNumber);
+
+            if (idL >= 65535) { idH++; } // 65.535 == FFFF
+            else { idL++; }
+
+            string newId = _latestId = $"{idH:X4}-{idL:X4}";
+            return newId;
+        }
 
         [HttpPost(Name = "CreateBooking")]
         public IActionResult Create(BookingRequestModel bookingRequest)
         {
-            if (bookingRequest.EquipmentIDs == null && bookingRequest.SuitIDs == null && bookingRequest.AddonIDs == null){
+            if (bookingRequest.EquipmentIDs == null && bookingRequest.SuitIDs == null && bookingRequest.AddonIDs == null)
+            {
                 return BadRequest();
             }
 
             try
             {
+                // Create a new instance of DataContext and ensure it is properly disposed after use
                 using DataContext dc = new();
-                dc.Booking.Add((BookingModel)bookingRequest);
+
+                // Pass both the bookingRequest and the DataContext for the explicit cast
+                var bookingModel = (BookingModel)(bookingRequest, dc);
+
+                var lastBooking = dc.Booking.OrderBy(b => b.ID).LastOrDefault();
+
+                if (lastBooking != null)
+                {
+                    bookingModel.ID = IDMaker(lastBooking.ID);
+                }
+                else
+                {
+                    bookingModel.ID = IDMaker();
+                }
+
+
+                dc.Booking.Add(bookingModel);
                 dc.SaveChanges();
                 return Created();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);  // Log or return the exception for debugging
             }
         }
 

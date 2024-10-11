@@ -3,7 +3,7 @@ using Surfs_Up_WebAPI.Models;
 
 namespace Surfs_Up_WebAPI.Data
 {
-    class DataContext : DbContext
+    public class DataContext : DbContext
     {
         public DbSet<AddonModel> Addon { get; set; } = null!;
         public DbSet<BookingModel> Booking { get; set; } = null!;
