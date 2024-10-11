@@ -1,9 +1,10 @@
-using System.ComponentModel;
 using SurfsUp.Models;
+
+namespace SurfsUp.Controllers;
 
 public static class BookingRepository
 {
-    private static List<BookingModel> _bookings = new(){};
+    private static readonly List<BookingModel> _bookings = [];
 
     public static void Add(BookingModel booking){
       _bookings.Add(booking);

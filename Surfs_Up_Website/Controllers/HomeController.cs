@@ -10,7 +10,7 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     public WeatherData WD { get; set; }
 
-    public static DetailModel cart;
+    private static DetailModel _cart = null!;
 
     private List<EquipmentModel> equipment = EquipmentRepository.GetEquipment();
     private List<SuitModel> suits = SuitRepository.GetSuits();
@@ -26,7 +26,7 @@ public class HomeController : Controller
     {
         this.ViewData["WD"] = WD;
 
-        Dictionary<string, List<string>> validationErrors = null;
+        Dictionary<string, List<string>>? validationErrors = null;
 
         if (TempData["ValidationErrors"] != null)
         {
@@ -52,7 +52,7 @@ public class HomeController : Controller
             ViewBag.Booking = "true";
         }
 
-        cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel();
+        _cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel();
         DetailModel model = new()
         {
             Equipment = equipment,
@@ -72,25 +72,25 @@ public class HomeController : Controller
                 EquipmentModel e = equipment.FirstOrDefault(i => i.ID == id);
                 if (e != null)
                 {
-                    cart.Equipment.Add(e);
+                    _cart.Equipment.Add(e);
                 }
                 break;
             case "suit":
                 SuitModel s = suits.FirstOrDefault(i => i.ID == id);
                 if (s != null)
                 {
-                    cart.Suits.Add(s);
+                    _cart.Suits.Add(s);
                 }
                 break;
             case "addon":
                 AddonModel a = addons.FirstOrDefault(i => i.ID == id);
                 if (a != null)
                 {
-                    cart.Addons.Add(a);
+                    _cart.Addons.Add(a);
                 }
                 break;
         }
-        HttpContext.Session.SetObject("Cart", cart);
+        HttpContext.Session.SetObject("Cart", _cart);
 
         // Return the updated list as JSON
         return Json(new { message = "Item added!" });

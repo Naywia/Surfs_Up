@@ -100,11 +100,14 @@ public class WeatherData
             long unixSec = Convert.ToInt64(_unixStamps[i]);
             var d = DateTimeOffset.FromUnixTimeSeconds(unixSec).LocalDateTime;
             DAYS dow = (DAYS)Enum.Parse(typeof(DAYS), d.DayOfWeek.ToString());
-            
+
+// The dicts should be there so... imma just supress this "for now" B^)
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             float? maxTemp = float.Parse(_data["temperature_2m_max"][i].ToString());
             float? minTemp = float.Parse(_data["temperature_2m_min"][i].ToString());
             float? uvIndex = float.Parse(_data["uv_index_max"][i].ToString());
             float? windSpd = float.Parse(_data["wind_speed_10m_max"][i].ToString());
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
             _dataDict.Add(dow, new(maxTemp ?? -9.9f, minTemp ?? -9.9f, uvIndex ?? -9.9f, windSpd ?? -9.9f, d.Date.ToString("dd MMM"), unixSec));
         }
