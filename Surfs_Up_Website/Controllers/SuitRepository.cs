@@ -91,7 +91,7 @@ namespace SurfsUp.Controllers
       }
     }
 
-    private static bool TryFindSuit(int id, out SuitModel suit)
+    private static bool TryFindSuit(int id, out SuitModel? suit)
     {
       using DataContext dc = new();
       suit = dc.Suits.Find(id);
