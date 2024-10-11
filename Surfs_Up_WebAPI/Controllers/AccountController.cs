@@ -10,7 +10,9 @@ namespace Surfs_Up_WebAPI.Controllers
     {
         public string GenerateJwtToken(bool isAdmin)
         {
+#pragma warning disable CS8604 // Possible null reference argument.
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("SigningKey")));
+#pragma warning restore CS8604 // Possible null reference argument.
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage;
 using Surfs_Up_WebAPI.Data;
 using Surfs_Up_WebAPI.Models;
 
@@ -45,7 +44,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult Get(int id)
         {
             using DataContext dc = new();
-            SuitModel suit = dc.Suit.Find(id);
+            SuitModel? suit = dc.Suit.Find(id);
 
             if (suit != null)
             {

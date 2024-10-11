@@ -8,12 +8,12 @@ namespace Surfs_Up_WebAPI.Models
     public class BookingModel
     {
         [Key]
-        public string ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string ID { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
         public DateTime Time { get; set; }
         public long Phone { get; set; }
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
         public List<EquipmentModel>? Equipment { get; set; }
         public List<SuitModel>? Suits { get; set; }
         public List<AddonModel>? Addons { get; set; }

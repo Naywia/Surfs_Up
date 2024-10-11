@@ -44,7 +44,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult Get(int id)
         {
             using DataContext dc = new();
-            EquipmentModel equipment = dc.Equipment.Find(id);
+            EquipmentModel? equipment = dc.Equipment.Find(id);
 
             if (equipment != null)
             {

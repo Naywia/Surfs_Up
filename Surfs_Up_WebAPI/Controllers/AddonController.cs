@@ -51,7 +51,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult Get(int id)
         {
             using DataContext dc = new();
-            AddonModel addon = dc.Addon.Find(id);
+            AddonModel? addon = dc.Addon.Find(id);
 
             if (addon != null)
             {
