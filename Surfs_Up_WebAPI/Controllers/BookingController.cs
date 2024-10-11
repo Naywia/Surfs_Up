@@ -105,8 +105,7 @@ namespace Surfs_Up_WebAPI.Controllers
         public IActionResult GetAll()
         {
             using DataContext dc = new();
-            // List<BookingModel> bookings = [.. dc.Booking];
-
+            
             List<BookingModel> bookings = [.. dc.Booking
                      .Include(b => b.Equipment)  // Include related Equipment
                      .Include(b => b.Suits)      // Include related Suits
