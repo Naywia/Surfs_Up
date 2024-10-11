@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using SQLitePCL;
 using SurfsUp.Data;
 using SurfsUp.Models;
 
@@ -90,10 +91,19 @@ public static class AddonsRepository
     }
   }
 
-  private static bool TryFindAddon(int id, out AddonModel? addon)
+  private static bool TryFindAddon(int id, out AddonModel addon)
   {
-    using DataContext dc = new();
-    addon = dc.Addons.Find(id);
+    using HttpClient client = new();
+    var response = client.GetAsync(api_url + "/" + id).Result;
+    if (response.IsSuccessStatusCode)
+    {
+      var res = response.Content.ReadAsStringAsync().Result;
+      addon = JsonConvert.DeserializeObject<AddonModel>(res) ?? new AddonModel();
+    }
+    else
+    {
+      throw new HttpRequestException($"Couldn't fetch the data... {response.StatusCode}");
+    }
     return addon == null;
   }
 }
