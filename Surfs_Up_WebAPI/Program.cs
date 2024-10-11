@@ -1,13 +1,19 @@
 using Microsoft.AspNetCore.Identity;
 using System.Text.Json.Serialization;
 using Surfs_Up_WebAPI.Data;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<DataContext>();
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedEmail = true)
+builder.Services.AddIdentityApiEndpoints<User>() /*(options => options.SignIn.RequireConfirmedEmail = true)*/
     .AddEntityFrameworkStores<DataContext>();
+builder.Services.AddDbContext<DataContext>();
+// builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedEmail = true)
+    // .AddEntityFrameworkStores<DataContext>();
+
+// builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
 
 builder.Services.Configure<IdentityOptions>(options => {
@@ -74,9 +80,21 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+// app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapIdentityApi<User>();
+
+app.MapPost("/logout", async (SignInManager<User> signInManager, [FromBody] object empty) => {
+    if (empty != null)
+    {
+        await signInManager.SignOutAsync();
+        return Results.Ok();
+    }
+    return Results.Unauthorized();
+})
+.WithOpenApi()
+.RequireAuthorization();
 
 app.Run();
