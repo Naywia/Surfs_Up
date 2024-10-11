@@ -2,11 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using SurfsUp.Models;
 using SurfsUp.Extensions;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Text;
+using System.Net.Http.Headers;
 
 namespace SurfsUp.Controllers;
 
 public class HomeController : Controller
 {
+    private static readonly string api_url = "https://localhost:7052/";
     private readonly ILogger<HomeController> _logger;
     public WeatherData WD { get; set; }
 
@@ -108,5 +112,55 @@ public class HomeController : Controller
     {
         var cart = HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel();
         return Json(cart);
+    }
+
+    private HttpRequestMessage? CreateRequest(HttpMethod method, string url, string content)
+    {
+        var request = new HttpRequestMessage(method, url);
+        request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        request.Content = new StringContent(content, Encoding.UTF8);
+        request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+        return request;
+    }
+
+    [HttpGet]
+    public string TestRegister()
+    {
+        using HttpClient client = new();
+        var parameters = new Dictionary<string, string>
+        {
+            {"email", "karl@mail.com"},
+            {"password", "Kode123!"}
+        };
+
+        var req = CreateRequest(
+            HttpMethod.Post,
+            $"{api_url}register",
+            JsonConvert.SerializeObject(parameters)
+        ) ?? throw new NullReferenceException("What the heeeeel");
+
+        var response = client.SendAsync(req).Result;
+        return $"Register response...\n{(int)response.StatusCode}: {response.StatusCode}";
+    }
+
+    [HttpGet]
+    public string TestLogin()
+    {
+        using HttpClient client = new();
+        var parameters = new Dictionary<string, string>
+        {
+            {"email", "karl@mail.com"},
+            {"password", "Kode123!"}
+        };
+        
+        var req = CreateRequest(
+            HttpMethod.Post,
+            $"{api_url}login",
+            JsonConvert.SerializeObject(parameters)
+        ) ?? throw new NullReferenceException("What the heeeeel");
+
+        var response = client.SendAsync(req).Result;
+        return $"Login response...\n{(int)response.StatusCode}: {response.StatusCode}";
     }
 }
