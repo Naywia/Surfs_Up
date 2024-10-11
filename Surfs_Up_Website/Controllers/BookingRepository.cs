@@ -105,7 +105,5 @@ namespace SurfsUp.Controllers
         throw new HttpRequestException($"Couldn't delete the booking... {response.StatusCode}");
       }
     }
-
-
   }
 }

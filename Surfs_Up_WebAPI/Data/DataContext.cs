@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Surfs_Up_WebAPI.Models;
 
 namespace Surfs_Up_WebAPI.Data;
 
-public class DataContext : DbContext
+public class DataContext : IdentityDbContext<User>
 {
     public DbSet<AddonModel> Addon { get; set; } = null!;
     public DbSet<BookingModel> Booking { get; set; } = null!;
@@ -34,5 +35,7 @@ public class DataContext : DbContext
             .HasMany(b => b.Equipment)
             .WithMany(e => e.Bookings)
             .UsingEntity(join => join.ToTable("BookingEquipment"));
+
+        modelBuilder.HasDefaultSchema("identity");
     }
 }
