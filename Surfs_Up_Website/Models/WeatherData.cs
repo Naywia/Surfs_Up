@@ -97,9 +97,14 @@ public class WeatherData
         // All of this stinky code needs some error checking... but not right now B)
         var _unixStamps = _data["time"] ?? throw nullrefEx;
         for (int i = 0; i < _unixStamps.Count(); i++) {
-            long unixSec = Convert.ToInt64(_unixStamps[i]);
-            var d = DateTimeOffset.FromUnixTimeSeconds(unixSec).LocalDateTime;
+
+#pragma warning disable CS8604 // Possible null reference argument.
+            long unixSec = _unixStamps[i].Value<int>();
+
+            DateTimeOffset d = DateTimeOffset.FromUnixTimeSeconds(unixSec).LocalDateTime;
             DAYS dow = (DAYS)Enum.Parse(typeof(DAYS), d.DayOfWeek.ToString());
+            if (_dataDict.ContainsKey(dow))
+            { dow = (DAYS)Enum.Parse(typeof(DAYS), d.AddDays(1).DayOfWeek.ToString()); } 
 
 // The dicts should be there so... imma just supress this "for now" B^)
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
@@ -108,6 +113,7 @@ public class WeatherData
             float? uvIndex = float.Parse(_data["uv_index_max"][i].ToString());
             float? windSpd = float.Parse(_data["wind_speed_10m_max"][i].ToString());
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8604 // Possible null reference argument.
 
             _dataDict.Add(dow, new(maxTemp ?? -9.9f, minTemp ?? -9.9f, uvIndex ?? -9.9f, windSpd ?? -9.9f, d.Date.ToString("dd MMM"), unixSec));
         }
