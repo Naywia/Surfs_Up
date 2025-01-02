@@ -1,3 +1,4 @@
+using System.Text;
 using Newtonsoft.Json;
 using SurfsUp.Models;
 
@@ -6,7 +7,7 @@ namespace SurfsUp.Controllers
   public static class BookingRepository
   {
 
-    private static readonly string api_url = "https://localhost:7052/Booking";
+    private static readonly string api_url = "https://localhost:7052/Booking/";
     private static List<BookingModel> _bookings = new() { };
 
     static BookingRepository()
@@ -35,34 +36,30 @@ namespace SurfsUp.Controllers
     {
       using HttpClient client = new();
 
-      var eIDs = (from e in booking.Equipment select e.ID).ToList();
-      var sIDs = (from s in booking.Suits select s.ID).ToList();
-      var aIDs = (from a in booking.Addons select a.ID).ToList();
-
-
-      // Build the request parameters as form-urlencoded, which matches typical POST API expectations
-      var parameters = new Dictionary<string, string>
+      var payload = new
       {
-        { "firstName", booking.FirstName },
-        { "lastName", booking.LastName },
-        { "time", booking.Time.ToString() },
-        { "phone", booking.Phone.ToString() },
-        { "email", booking.Email },
-        { "equipmentIDs", JsonConvert.SerializeObject(eIDs) },
-        { "suitIDs", JsonConvert.SerializeObject(sIDs) },
-        { "addonIDs", JsonConvert.SerializeObject(aIDs) }
+        firstName = booking.FirstName,
+        lastName = booking.LastName,
+        time = booking.Time.ToString("o"), // ISO 8601 format
+        phone = booking.Phone,
+        email = booking.Email,
+        equipmentIDs = booking.Equipment?.Select(e => e.ID).ToList(), // null-safe access
+        suitIDs = booking.Suits?.Select(s => s.ID).ToList(),         // null-safe access
+        addonIDs = booking.Addons?.Select(a => a.ID).ToList()        // null-safe access
       };
 
-      var content = new FormUrlEncodedContent(parameters); // Use form URL encoding for the body
+      var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
 
-      var response = client.PostAsync(api_url, content).Result; // Pass the content in the POST request
+      var response = client.PostAsync(api_url, content).Result;
+
       if (response.IsSuccessStatusCode)
       {
         GetBookingsFromAPI();
       }
       else
       {
-        throw new HttpRequestException($"Couldn't upload the data... {response.StatusCode}");
+        var errorContent = response.Content.ReadAsStringAsync().Result;
+        throw new HttpRequestException($"Couldn't upload the data... {response.StatusCode}. Details: {errorContent}");
       }
     }
 

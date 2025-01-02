@@ -42,7 +42,7 @@ public class BookingController : Controller
             return RedirectToAction("Index", "Home");
         }
 
-        booking.ID = IDMaker();
+        // booking.ID = IDMaker();
         booking.SetCart(HttpContext.Session.GetObject<DetailModel>("Cart") ?? new DetailModel());
         BookingRepository.Create(booking);
 
