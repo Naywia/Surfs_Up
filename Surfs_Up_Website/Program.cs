@@ -12,10 +12,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true; // Make the session cookie essential
 });
 
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new NullReferenceException("Øv bøv :((");
-//builder.Services.AddDbContext<DataContext>(options =>
-//    options.UseSqlite(connectionString));
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

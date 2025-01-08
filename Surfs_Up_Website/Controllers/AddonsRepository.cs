@@ -1,6 +1,4 @@
 using Newtonsoft.Json;
-using SQLitePCL;
-using SurfsUp.Data;
 using SurfsUp.Models;
 
 namespace SurfsUp.Controllers;

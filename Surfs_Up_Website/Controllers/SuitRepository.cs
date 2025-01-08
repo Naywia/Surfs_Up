@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using SurfsUp.Data;
 using SurfsUp.Models;
 
 namespace SurfsUp.Controllers;
@@ -88,12 +87,5 @@ public static class SuitRepository
     {
       throw new HttpRequestException($"Couldn't delete the suit... {response.StatusCode}");
     }
-  }
-
-  private static bool TryFindSuit(int id, out SuitModel? suit)
-  {
-    using DataContext dc = new();
-    suit = dc.Suits.Find(id);
-    return suit == null;
   }
 }
