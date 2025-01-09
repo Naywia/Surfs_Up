@@ -1,0 +1,156 @@
+@using SurfsUp.Extensions
+@{         
+    DayData[] data;
+    if (ViewData.TryGetValue("WD", out var mads)) {
+        var wd = mads == null ? throw new NullReferenceException("WD wasn't set to anything...") : (WeatherData)mads;
+        data = wd.GetDayData(DAYS.Weekdays);
+    }
+    else
+    { throw new NullReferenceException("WD wasn't set to anything..."); }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Site Title -->
+    <title>Surf's Up</title>
+
+    <!-- Site Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/images/favicon/favicon-16x16.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SurfsUp.styles.css" asp-append-version="true" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Cherry+Swash:wght@400;700&family=Lobster&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="sidebar">
+        <div id="logo">
+            <img src="~/images/logo_chatgpt.png" alt="Surf's Up Logo">
+        </div>
+        <div id="location">
+            <h2>Odense</h2>
+            <div id="day0">
+                <p>Mandag <i>(@data[0].DateString)</i><br>@data[0] °C</p>
+            </div>
+            <div id="day1">
+                <p>Tirsdag <i>(@data[1].DateString)</i><br>@data[1] °C</p>
+            </div>
+            <div id="day2">
+                <p>Onsdag <i>(@data[2].DateString)</i><br>@data[2] °C</p>
+            </div>
+            <div id="day3">
+                <p>Torsdag <i>(@data[3].DateString)</i><br>@data[3] °C</p>
+            </div>
+            <div id="day4">
+                <p>Fredag <i>(@data[4].DateString)</i><br>@data[4] °C</p>
+            </div>
+        </div>
+        <div id="shop-info">
+            <div id="hours">
+                <h3>Åbningstider:</h3>
+                <p>Mandag - Torsdag: 08:00 - 16:00<br>Fredag - Lørdag: 08:00-19:00<br>Søndag: Lukket</p>
+            </div>
+            <div id="contact">
+                <h3>Kontakt:</h3>
+                <p>Email: kontakt@surfsup.dk<br>Phone: +45 69459835</p>
+                <div class="social-icons">
+                    <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-facebook-official"></i>
+                    </a>
+                    <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://haflaburger.dk/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-twitter-square"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <nav>
+            <a onclick="goTo('#practical-info')">
+                <div>Praktisk Info</div>
+                <hr>
+            </a>
+            <div class="subnav">
+                <a onclick="goTo('#equipment')">
+                    <div>Udstyr</div>
+                    <hr>
+                </a>
+                <div class="subnav-content">
+                    <a onclick="goTo('#surfboards')">
+                        <div>Surfbrætter</div>
+                        <hr>
+                    </a>
+                    <a onclick="goTo('#wetsuits')">
+                        <div>Våddragter</div>
+                        <hr>
+                    </a>
+                    <a onclick="goTo('#addons')">
+                        <div>Ekstraudstyr</div>
+                        <hr>
+                    </a>
+                </div>
+            </div>
+            @* <a onclick="goTo('#instructors')">Instruktører</a> *@
+            <a onclick="goTo('#book')" id="book-btn">
+                <div>
+                    Book
+                    <i id="shopping-cart" class="fa fa-shopping-cart"></i>
+                    <label id="cart-count">@Context.Session.GetCartCount()</label>
+                </div>
+                <hr>
+            </a>
+        </nav>
+        <main id="page" role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        var dates = [];
+        @foreach (var d in data)
+        {
+            @:dates.push(@d.DateUnix * 1000);
+        }
+
+        for (let i = 0; i < dates.length; i++) {
+            var testDate = new Date(dates[i]).getDate();
+            var currDate = new Date().getDate();
+
+
+            if (testDate === currDate)
+            {
+                var elem = document.getElementById(`day${i}`);
+                elem.style.fontWeight = "bold";
+            }
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

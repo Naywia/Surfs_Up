@@ -1,0 +1,41 @@
+@model List<SuitModel>
+
+<div class="grid">
+@{
+    foreach (var suits in Model)
+    {
+        if (suits.Type == "Suit")
+        {
+            <div class="card-equipment">
+                <div class="image">
+
+
+                </div>
+                <div class="content">
+                    <h4>@suits.Name</h4>
+                    <div class="description">
+                        <table>
+                            <tr>
+                                <th>Størrelse(r):</th>
+                                <td></td>
+                                <td>@suits.Sizes</td>
+                            </tr>
+                            <tr>
+                                <th>Type:</th>
+                                <td></td>
+                                <td>@suits.Type</td>
+                            </tr>
+                            <tr>
+                                <th>Beskrivelse:</th>
+                                <td></td>
+                                <td>@suits.Description</td>
+                            </tr>
+                        </table>
+                        <button>Lej dragt</button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}
+</div>

@@ -1,0 +1,402 @@
+html,
+body {
+  --dark: #1f1f1f;
+  --light: #f2eeea;
+  --brown-accent: #393333;
+  --orange-accent: #e59355;
+  --blue-accent: #729ea1;
+  --yellow-accent: #ffde8a;
+  --grey: #ededed;
+
+  display: flex;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--light);
+  font-family: Raleway, Montserrat, Sans-Serif;
+}
+
+/* ------ HTML TAGS ------ */
+
+h1,
+h2,
+h3 {
+  font-family: Cherry Swash, Lobster, Sans-Serif;
+}
+
+h1 {
+  font-weight: bold;
+  color: var(--orange-accent);
+  margin-top: 5rem;
+}
+
+h4 {
+  font-family: Amatic SC, Cherry Swash, Sans-Serif;
+  font-weight: bold;
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  line-height: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--light) !important;
+}
+
+ul,
+ol {
+  line-height: 2em;
+}
+
+button {
+  width: 100%;
+  background-color: var(--yellow-accent);
+  color: var(--dark);
+  border: none;
+  margin-top: 1em;
+  padding: 0.5em;
+}
+
+button:hover {
+  background-color: var(--orange-accent);
+}
+
+/* ------ NAV ------ */
+
+nav {
+  display: flex;
+  position: fixed;
+  height: 5rem;
+  background-color: var(--brown-accent);
+  color: var(--light);
+  justify-content: end;
+  align-items: center;
+  width: -moz-available;
+  /* For Mozzila */
+  width: -webkit-fill-available;
+  /* For Chrome */
+  z-index: 10;
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  background-color: var(--brown-accent);
+  z-index: 1;
+}
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+
+nav a {
+  display: flex;
+  height: 100%;
+  width: 8em;
+  padding: 20px;
+  padding-bottom: 15px;
+  font-size: 1.3em;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+nav a:hover {
+  cursor: pointer;
+}
+
+nav a div {
+  display: flex;
+  align-items: center;
+}
+
+nav a hr {
+  opacity: 0;
+  width: 100%;
+  margin: 0;
+  margin-top: .1em !important;
+  border: 1px solid var(--light);
+}
+
+nav a:hover hr {
+  opacity: 1;
+}
+
+#book-btn {
+  background-color: var(--orange-accent);
+}
+
+#shopping-cart {
+  font-size: 1.7em !important;
+  margin-left: .3em;
+}
+
+#cart-count {
+  display: none;
+  font-size: 0.7em;
+  background: var(--brown-accent);
+  padding: .6em;
+  border-radius: 50px;
+  /* margin-bottom: auto;
+  margin-left: .1em; */
+  line-height: .5;
+  position: absolute;
+  right: 23px;
+  top: 16px;
+}
+
+/* ------ SIDEBAR ------ */
+
+#sidebar {
+  display: flex;
+  width: 18rem;
+  height: 100vh;
+  position: fixed;
+  flex-direction: column;
+  background-color: var(--blue-accent);
+  color: var(--dark);
+  padding: 0 1.5em;
+}
+
+#logo img {
+  width: 100%;
+}
+
+#shop-info {
+  margin: auto 0 1.5em 0;
+}
+
+.fa {
+  font-size: 2em !important;
+}
+
+.social-icons a {
+  margin: 0.5em;
+}
+
+.social-icons a:first-child {
+  margin-left: 0;
+}
+
+/* ------ ACCOUNT FOR THE SIDEBAR ------ */
+
+.box {
+  margin-left: 18rem;
+}
+
+/* ------ CONTENT ------ */
+
+#page {
+  margin: 10rem;
+}
+
+/* ------ PRACTICAL INFO ------ */
+
+.carousel-item img {
+  aspect-ratio: 16/9;
+}
+
+.carousel-control-next:hover, .carousel-control-prev:hover {
+  background-color: transparent !important;
+}
+
+/* ------ EQUIPMENT ------ */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-equipment {
+  display: flex;
+  width: 17em;
+  margin: 2.5em;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
+  flex-direction: column;
+}
+
+.image {
+  display: flex;
+  height: 200px;
+  justify-content: center;
+}
+
+.image img {
+  display: block;
+  /* width: 100%; */
+  height: inherit;
+  /* object-fit: cover; */
+}
+
+.content {
+  display: flex;
+  padding: 2rem 1.8rem;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+
+.description table th {
+  vertical-align: top;
+}
+
+/* ------ SKELETON (CARD/EQUIPMENT) ------ */
+
+.loading .image,
+.loading h4,
+.loading .description {
+  background-color: var(--grey);
+  background: linear-gradient(100deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, .5) 50%,
+      rgba(255, 255, 255, 0) 60%) var(--loading-grey);
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  animation: 1s loading ease-in-out infinite;
+}
+
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
+
+.loading h4 {
+  min-height: 1.6rem;
+  border-radius: 4px;
+  animation-delay: .05s;
+}
+
+.loading .description {
+  min-height: 4rem;
+  border-radius: 4px;
+  animation-delay: .06s;
+}
+
+/* ------ BOOK SECTION ------ */
+
+.booking-form {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  -webkit-box-shadow: 0 5px 10px -5px rgba(0, 0, 0, .3);
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, .3);
+  border-radius: 6px;
+}
+
+.booking-form>.booking-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background-image: url(/images/book-background.jpg);
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px 0 0 6px;
+}
+
+.booking-form>#form-body {
+  margin-left: 16em;
+  padding: 2.5em;
+}
+
+.booking-form .form-header {
+  margin-bottom: 2em;
+}
+
+.booking-form .form-group {
+  margin-bottom: 1em;
+}
+
+.form-label {
+  color: #b5c1cc;
+  font-weight: 700;
+  -webkit-transition: .2s;
+  transition: .2s;
+  text-transform: uppercase;
+  line-height: 24px;
+  height: 24px;
+  font-size: 14px;
+  z-index: 1;
+}
+
+.form-control {
+  background-color: #f7f9fa;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 0;
+  -webkit-transition: .2s;
+  transition: .2s;
+  color: var(--dark);
+  border: 0;
+  font-size: 16px;
+  font-weight: 700;
+  -webkit-box-shadow: inset 0 1px 4px rgba(181, 193, 204, .3);
+  box-shadow: inset 0 1px 4px rgba(181, 193, 204, .3);
+}
+
+.booking-form input[type="datetime-local"].form-control:invalid {
+  color: var(--grey);
+}
+
+#form-equipment, #booking-equipment {
+  display: flex;
+  flex-direction: column;
+}
+
+#form-equipment-inner, #booking-equipment-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.book-equipment {
+  flex: 1;
+}
+
+.booking-form .submit-btn {
+  font-weight: 700;
+}
+
+/* ------ MODAL ------ */
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  /* Make EVERYTHING be behind this; besides it's children */
+  z-index: 40;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.show  {
+  display: block !important;
+}
+
+/* Add padding and center-align text to the container */
+#modal-container {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 60%;
+  padding: 16px;
+}
+
+#booking-svg {
+  width: 18%;
+}
