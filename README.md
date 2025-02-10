@@ -1,6 +1,8 @@
-# Surf's Up
+# 🌊 Surf's Up
 ## Description
-Surf's Up is a school project designed as a website to help users plan their perfect surfing trip. The website provides information on surfing locations, weather conditions, and tips for surfers of all levels. It is currently in development and not intended for installation or public use.  
+Surf's Up is a school project designed as a web application to help users plan their ideal surfing trip. The website provides information about popular surf spots, weather forecasts, and useful tips for surfers of all skill levels.    
+
+This project is a hands-on exercise in system development and programming and is not intended for public use or installation.
 
 ### Functions
     Display popular surfing destinations  
@@ -9,17 +11,24 @@ Surf's Up is a school project designed as a website to help users plan their per
 
 ## Installation
 This project is not meant for installation as it is still a school project under development.  
-Also... one does not "install" a website.  
 
 ### Configuration
-No specific configuration is required for this project at the moment.  
+No specific configuration is required at this stage.     
 
 ## Technologies
-Language: HTML, CSS, JavaScript  
+Website: ASP.net Core MVC    
+API: ASP.NET Core Web API    
+Database: EF Core    
+Methodologies: XP, FDD, RAD
+
+Project Development
+The project follows an iterative development process, where new requirements and features are introduced each week. Our Product Owner, will provide new requirements, which will be implemented according to the project timeline.
+
+In week 43 (2024), the project will conclude with a presentation where we will showcase our solution and receive feedback from our programming and system development instructors.
 
 ## Developers
-Alexander Wiencken  
-Jousef Khanjer  
-Mads Juul Carlsen  
-Maya Wettendorff  
-Michelle Won Prachan Alsing  
+itsAfeat    
+JooMooCN     
+mjcrl     
+Naywia  
+Koorumi      
