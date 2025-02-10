@@ -21,7 +21,7 @@ API: ASP.NET Core Web API
 Database: EF Core    
 Methodologies: XP, FDD, RAD
 
-Project Development
+## Project Development
 The project follows an iterative development process, where new requirements and features are introduced each week. Our Product Owner, will provide new requirements, which will be implemented according to the project timeline.
 
 In week 43 (2024), the project will conclude with a presentation where we will showcase our solution and receive feedback from our programming and system development instructors.
